@@ -674,7 +674,7 @@ void ft_memdel_test(void) {
 	strcpy(ptr, "test\0");
 	ft_memdel((void *)&ptr);
 	if (ptr != NULL) {
-		printf("\tFAIL ft_memdel_test: pointer is not set to NULL\n");
+		printf("\tFAIL ft_memdel_test: pointer didn't set to NULL\n");
 		marker = 0;
 	}
 	if (marker == 1)
@@ -705,7 +705,7 @@ void ft_strdel_test(void) {
 	strcpy(str, "test\0");
 	ft_strdel(&str);
 	if (str != NULL) {
-		printf("\tFAIL ft_strdel_test: pointer is not set to NULL\n");
+		printf("\tFAIL ft_strdel_test: pointer didn't set to NULL\n");
 		marker = 0;
 	}
 	if (marker == 1)
@@ -1037,23 +1037,41 @@ void ft_lstnew_test(void) {
 }
 
 void del_test(void *ptr, size_t size) {
-	ft_memdel()
+	free(ptr);
+	(void)size;
 }
 
 void ft_lstdelone_test(void) {
 	int marker = 1;
+
 	int i = 15;
 	size_t size = sizeof(int);
-	t_list list = ft_lstnew(i, size);
-	printf("%i\n", *((int *)list->content));
-	ft_lstdelone(&list, del_test(list, size));
-	if (list->content != NULL) {
+	t_list *list = ft_lstnew(&i, size);
+	list->next = ft_lstnew(&i, size);
+
+	ft_lstdelone(&list->next, del_test);
+	if (list->next != NULL) {
 		marker = 0;
-		printf("\tFAIL ft_lstdelone: for content s = 'test string' and content_size = strlen(s) + 1\n");
+		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
 	}
-	
+	free(list->next);
+
+	ft_lstdelone(&list, del_test);
+	if (list != NULL) {
+		marker = 0;
+		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
+	}
+	free(list);
+
+	list = NULL;
+	ft_lstdelone(&list, del_test);
+	if (list != NULL) {
+		marker = 0;
+		printf("\tFAIL ft_lstdelone: crash\n");
+	}
+
 	if (marker == 1)
-		printf("ft_lstnew set pointer list->content to NULL. *** Check valgrind.log ***\n");
+		printf("ft_lstnew sets pointer list to NULL. *** Check valgrind.log ***\n");
 }
 
 int main(void) {

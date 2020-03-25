@@ -1,5 +1,5 @@
 NAME = libft.a
-SRC_PATH = ./sources/
+SRC_PATH = ./
 SRC_LIST = ft_putstr.c\
 	ft_strnew.c\
 	ft_memalloc.c\
@@ -55,11 +55,16 @@ SRC_LIST = ft_putstr.c\
 	ft_putendl_fd.c\
 	ft_putnbr_fd.c\
 	ft_lstnew.c\
-	ft_lstdelone.c
-	
+	ft_lstdelone.c\
+	ft_lstdel.c\
+	ft_lstadd.c\
+	ft_lstiter.c\
+	ft_lstmap.c
+
+
 SRC = $(addprefix $(SRC_PATH), $(SRC_LIST))
 OBJ = $(patsubst %.c, %.o, $(SRC_LIST))
-HEADER = -I./sources/
+HEADER = -I./
 FLAGS = -Wall -Werror -Wextra -ggdb3 -O0 -std=c99
 
 all: $(NAME)
