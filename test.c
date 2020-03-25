@@ -64,6 +64,7 @@ char *test_str_char[8] = {
 
 
 
+
 void ft_istolower_toupper_test(void) {
 	char test1[11] = "AbcD f12&@\0";
 	char test2[11] = "AbcD f12&@\0";
@@ -857,6 +858,35 @@ void ft_strnequ_test(void) {
 		marker = 0;
 		printf("\tFAIL ft_strnequ: for 'test' & 'tesT' & n = 4 expected '0'\n");
 	}
+	if (ft_strnequ("test", "test", 5) != 1) {
+		marker = 0;
+		printf("\tFAIL ft_strnequ: for 'test' & 'test' & n = 5 expected '1'\n");
+	}
+	if (ft_strnequ("tests", "test", 6) != 0) {
+		marker = 0;
+		printf("\tFAIL ft_strnequ: for 'tests' & 'test' & n = 6 expected '0'\n");
+	}
+	if (ft_strnequ("", "test", 6) != 0) {
+		marker = 0;
+		printf("\tFAIL ft_strnequ: for '' & 'test' & n = 6 expected '0'\n");
+	}
+	if (ft_strnequ("test", "", 6) != 0) {
+		marker = 0;
+		printf("\tFAIL ft_strnequ: for 'test' & '' & n = 6 expected '0'\n");
+	}
+	if (ft_strnequ("", "", 6) != 1) {
+		marker = 0;
+		printf("\tFAIL ft_strnequ: for '' & '' & n = 6 expected '1'\n");
+	}
+	if (ft_strnequ("", "", 0) != 1) {
+		marker = 0;
+		printf("\tFAIL ft_strnequ: for '' & '' & n = 0 expected '1'\n");
+	}
+	if (ft_strnequ("test", "voda", 0) != 1) {
+		marker = 0;
+		printf("\tFAIL ft_strnequ: for 'test' & 'voda' & n = 0 expected '1'\n");
+	}
+
 
 	if (marker == 1)
 		printf("ft_strnequ passed all tests\n");
