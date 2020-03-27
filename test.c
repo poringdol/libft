@@ -11,6 +11,9 @@
 #include <time.h>
 #include <limits.h>
 #include "libft.h"
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 char *test_str_int[35] = {
 							"2147483647",
@@ -65,7 +68,7 @@ char *test_str_char[8] = {
 
 
 
-void ft_istolower_toupper_test(void) {
+void ft_tolower_toupper_test(void) {
 	char test1[11] = "AbcD f12&@\0";
 	char test2[11] = "AbcD f12&@\0";
 	int marker = 1;
@@ -887,7 +890,6 @@ void ft_strnequ_test(void) {
 		printf("\tFAIL ft_strnequ: for 'test' & 'voda' & n = 0 expected '1'\n");
 	}
 
-
 	if (marker == 1)
 		printf("ft_strnequ passed all tests\n");
 }
@@ -1084,28 +1086,127 @@ void ft_lstdelone_test(void) {
 		marker = 0;
 		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
 	}
-	free(list->next);
 
 	ft_lstdelone(&list, del_test);
 	if (list != NULL) {
 		marker = 0;
 		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
 	}
-	free(list);
 
 	list = NULL;
 	ft_lstdelone(&list, del_test);
-	if (list != NULL) {
-		marker = 0;
-		printf("\tFAIL ft_lstdelone: crash\n");
-	}
 
 	if (marker == 1)
-		printf("ft_lstnew sets pointer list to NULL. *** Check valgrind.log ***\n");
+		printf("ft_lstdelone set pointer list to NULL. *** Check valgrind.log ***\n");
+}
+
+void ft_lstdel_test(void) {
+	int marker = 1;
+
+	int i = 15;
+	size_t size = sizeof(int);
+	t_list *list = ft_lstnew(&i, size);
+	list->next = ft_lstnew(&i, size);
+	list->next->next = ft_lstnew(&i, size);
+
+
+	ft_lstdel(&list, del_test);
+	if (list != NULL) {
+		marker = 0;
+		printf("\tFAIL ft_lstdel: pointer didn't set to NULL\n");
+	}
+
+	ft_lstdel(&list, del_test);
+
+	if (marker == 1)
+		printf("ft_lstdel set pointer list to NULL. *** Check valgrind.log ***\n");
+}
+
+void ft_lstadd_test(void) {
+		int marker = 1;
+
+	int i1 = 15;
+	int i2 = 50;
+	t_list *list;
+	t_list *list_add;
+	size_t size = sizeof(int);
+
+	list = ft_lstnew(&i1, size);
+	list_add = ft_lstnew(&i2, size);
+	ft_lstadd(&list, list_add);
+	if (*((int *)(list->content)) != 50) {
+		marker = 0;
+		printf("\tFAIL ft_lstadd: test failed\n");
+	}
+	ft_lstdel(&list, del_test);
+
+	list = NULL;
+	list_add = ft_lstnew(&i2, size);
+	ft_lstadd(&list, list_add);
+	if (*((int *)(list->content)) != 50) {
+		marker = 0;
+		printf("\tFAIL ft_lstadd: test failed\n");
+	}
+	ft_lstdel(&list, del_test);
+
+	if (marker == 1)
+		printf("ft_lstadd passed all tests\n");
+}
+
+void f_test(t_list *list) {
+	*((int *)list->content) += 35;
+}
+
+void ft_lstiter_test(void) {
+	int marker = 1;
+
+	int i1 = 15;
+	t_list *list;
+	size_t size = sizeof(int);
+
+	list = ft_lstnew(&i1, size);
+	list->next = ft_lstnew(&i1, size);
+	list->next->next = ft_lstnew(&i1, size);
+	ft_lstiter(list, f_test);
+	if (*((int *)(list->content)) != 50 || *((int *)(list->next->content)) != 50 || *((int *)(list->next->next->content)) != 50) {
+		marker = 0;
+		printf("\tFAIL ft_lstiter: test failed\n");
+	}
+	ft_lstdel(&list, del_test);
+
+	if (marker == 1)
+		printf("ft_lstiter passed all tests\n");
+}
+
+t_list *f_test1(t_list *list) {
+	*((int *)list->content) += 35;
+	return (list);
+}
+
+void ft_lstmap_test(void) {
+	int marker = 1;
+
+	int i1 = 15;
+	t_list *list;
+	size_t size = sizeof(int);
+	list = ft_lstnew(&i1, size);
+	list->next = ft_lstnew(&i1, size);
+	list->next->next = ft_lstnew(&i1, size);
+
+	t_list *list_new = ft_lstmap(list, f_test1);
+	if (*((int *)(list_new->content)) != 50 || *((int *)(list_new->next->content)) != 50 || *((int *)(list_new->next->next->content)) != 50) {
+		marker = 0;
+		printf("\tFAIL ft_lstmap: test failed\n");
+	}
+	ft_lstdel(&list, del_test);
+	ft_lstdel(&list_new, del_test);
+
+	if (marker == 1)
+		printf("ft_lstmap passed all tests\n");
 }
 
 int main(void) {
-	ft_istolower_toupper_test();
+	ft_tolower_toupper_test();
 	ft_isalpha_digit_alnum_ascii_print_test();
 	ft_atoi_test(test_str_int, test_str_int_size);
 	ft_strncmp_test();
@@ -1149,4 +1250,8 @@ int main(void) {
 	ft_putnbr_test();
 	ft_lstnew_test();
 	ft_lstdelone_test();
+	ft_lstdel_test();
+	ft_lstadd_test();
+	ft_lstiter_test();
+	ft_lstmap_test();
 }

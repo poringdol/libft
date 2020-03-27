@@ -65,7 +65,7 @@ SRC_LIST = ft_putstr.c\
 SRC = $(addprefix $(SRC_PATH), $(SRC_LIST))
 OBJ = $(patsubst %.c, %.o, $(SRC_LIST))
 HEADER = -I./
-FLAGS = -Wall -Werror -Wextra -ggdb3 -O0 -std=c99
+FLAGS = -Wall -Werror -Wextra -ggdb3
 
 all: $(NAME)
 
