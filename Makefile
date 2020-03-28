@@ -1,6 +1,5 @@
-NAME = libft.a
-SRC_PATH = ./
-SRC_LIST = ft_putstr.c\
+NAME=libft.a
+SRC=ft_putstr.c\
 	ft_strnew.c\
 	ft_memalloc.c\
 	ft_strtrim.c\
@@ -73,14 +72,14 @@ SRC_LIST = ft_putstr.c\
 	ft_strupcase.c\
 	ft_strlowcase.c
 
-SRC = $(addprefix $(SRC_PATH), $(SRC_LIST))
-OBJ = $(patsubst %.c, %.o, $(SRC_LIST))
-HEADER = -I./
-FLAGS = -Wall -Werror -Wextra -ggdb3
+OBJ = $(SRC:.c=.o)
+HEADER=-I./
+FLAGS=-Wall -Werror -Wextra -ggdb3
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME):
+	gcc $(FLAGS) $(HEADER) -c $? $(SRC)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
@@ -90,12 +89,12 @@ so:
 test: $(SRC)
 	@gcc $(FLAGS) $(SRC) test.c $(HEADER) -o test
 
-%.o: $(SRC_PATH)%.c
-	gcc $(FLAGS) $(HEADER) -c $^ -o $@
 clean:
-	/bin/rm -f *.o
+	/bin/rm -f $(OBJ)
 
 fclean: clean
 	/bin/rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
