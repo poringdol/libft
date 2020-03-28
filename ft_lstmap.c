@@ -9,14 +9,14 @@ t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 	fresh = NULL;
 	if (lst != NULL && f != NULL)
 	{
-		fresh = ft_lstnew(lst->content, sizeof(t_list));
+		fresh = ft_lstnew(lst->content, lst->content_size);
 		fresh = f(fresh);
 		res = fresh;
 	}
 	while (lst->next != NULL && f != NULL)
 	{
  		lst = lst->next;
-		fresh->next = ft_lstnew(lst->content, sizeof(t_list));
+		fresh->next = ft_lstnew(lst->content, lst->content_size);
 		fresh->next = f(fresh->next);
 		fresh = fresh->next;
 	}

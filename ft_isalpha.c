@@ -4,10 +4,3 @@ int	ft_isalpha(int ch)
 		return (ch);
 	return (0);
 }
-
-/*
-int ft_isalpha(int ch)
-{
-	return (((unsigned)ch | 32) - 'a' < 26);
-}
-*/

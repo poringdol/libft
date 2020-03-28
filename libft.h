@@ -12,6 +12,7 @@ typedef struct      s_list
     struct s_list   *next;
 }                   t_list;
 
+/******************** PART I ********************/
 
 int     ft_toupper(int ch);
 int     ft_tolower(int ch);
@@ -29,7 +30,6 @@ char    *ft_strchr(const char *str, int ch);
 size_t	ft_strlcat(char *dst, const char *src, size_t n);
 char	*ft_strncat(char *dst, const char *src, size_t n);
 char    *ft_strcat(char *dst, const char *src);
-size_t	ft_strlcpy (char *dst, const char *src, size_t n);
 char	*ft_strncpy(char *dst, const char *src, size_t n);
 char    *ft_strcpy(char *dst, const char *src);
 void	*ft_calloc(size_t n, size_t size);
@@ -43,6 +43,9 @@ void	*ft_memset(void *destination, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 void    *ft_memcpy(void *dst, const void *src, size_t n);
 int		ft_atoi(const char *str);
+
+/******************** PART II ********************/
+
 void	*ft_memalloc(size_t size);
 void	ft_memdel(void **ap);
 char	*ft_strnew(size_t size);
@@ -67,11 +70,32 @@ void	ft_putchar_fd(char c, int fd);
 void    ft_putstr_fd(char const *s, int fd);
 void    ft_putendl_fd(char const *s, int fd);
 void    ft_putnbr_fd(int n, int fd);
+
+/******************** PART III ********************/
+
 t_list	*ft_lstnew(void const *content, size_t content_size);
 void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void    ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void	ft_lstadd(t_list **alst, t_list *new);
 void	ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+t_list  *ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
+/******************** PART IV ********************/
+
+int     ft_islower(int ch);
+int     ft_isupper(int ch);
+int     ft_isblank(int ch);
+int     ft_iscntrl(int ch);
+int     ft_isgraph(int ch);
+int     ft_isspace(int ch);
+int     ft_isxdigit(int ch);
+size_t	ft_strlcpy (char *dst, const char *src, size_t n);
+int     ft_strcasecmp(const char *str1, const char *str2);
+int     ft_strncasecmp(const char *str1, const char *str2, size_t n);
+char	*ft_strcasestr(const char *str1, const char *str2);
+char	*ft_strupcase(char *str);
+char	*ft_strlowcase(char *str);
+
+
 
 #endif

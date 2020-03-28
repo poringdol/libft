@@ -1,6 +1,7 @@
 #include <string.h>
+#include "libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+int     ft_strncasecmp(const char *str1, const char *str2, size_t n)
 {
 	unsigned int	i;
 	unsigned char	*s1;
@@ -11,7 +12,7 @@ int	ft_strncmp(const char *str1, const char *str2, size_t n)
 	i = 0;
 	while (s1[i] && s2[i] && i < n)
 	{
-		if (s1[i] != s2[i])
+		if (ft_tolower(s1[i]) != ft_tolower(s2[i]))
 			return (s1[i] - s2[i]);
 		i++;
 	}

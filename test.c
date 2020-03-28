@@ -1198,11 +1198,216 @@ void ft_lstmap_test(void) {
 		marker = 0;
 		printf("\tFAIL ft_lstmap: test failed\n");
 	}
-	ft_lstdel(&list, del_test);
+	if (*((int *)(list->content)) != 15 || *((int *)(list->next->content)) != 15 || *((int *)(list->next->next->content)) != 15) {
+		marker = 0;
+		printf("\tFAIL ft_lstmap: you changed the source list\n");
+	}
+
 	ft_lstdel(&list_new, del_test);
+	ft_lstdel(&list, del_test);
 
 	if (marker == 1)
 		printf("ft_lstmap passed all tests\n");
+}
+
+void ft_islower_test(void) {
+	int marker = 1;
+	for (int i = -200; i < 257; i++) {
+		if ((islower(i) == 0 && ft_islower(i) > 0) || (islower(i) > 0 && ft_islower(i) == 0))
+		{
+			marker = 0;
+			printf("\tFAIL ft_islower: for i = %i expected %i, received %i\n", i, islower(i), ft_islower(i));
+		}
+	}
+
+	if (marker == 1)
+		printf("ft_islower passed all tests\n");
+}
+
+void ft_isupper_test(void) {
+	int marker = 1;
+	for (int i = -200; i < 257; i++) {
+		if ((isupper(i) == 0 && ft_isupper(i) > 0) || (isupper(i) > 0 && ft_isupper(i) == 0))
+		{
+			marker = 0;
+			printf("\tFAIL ft_isupper: for i = %i expected %i, received %i\n", i, isupper(i), ft_isupper(i));
+		}
+	}
+
+	if (marker == 1)
+		printf("ft_isupper passed all tests\n");
+}
+
+void ft_isblank_test(void) {
+	int marker = 1;
+	for (int i = -200; i < 257; i++) {
+		if ((isblank(i) == 0 && ft_isblank(i) > 0) || (isblank(i) > 0 && ft_isblank(i) == 0))
+		{
+			marker = 0;
+			printf("\tFAIL ft_isblank: for i = %i expected %i, received %i\n", i, isblank(i), ft_isblank(i));
+		}
+	}
+
+	if (marker == 1)
+		printf("ft_blank passed all tests\n");
+}
+
+void ft_iscntrl_test(void) {
+	int marker = 1;
+	for (int i = -200; i < 257; i++) {
+		if ((iscntrl(i) == 0 && ft_iscntrl(i) > 0) || (iscntrl(i) > 0 && ft_iscntrl(i) == 0))
+		{
+			marker = 0;
+			printf("\tFAIL ft_iscntrl: for i = %i expected %i, received %i\n", i, iscntrl(i), ft_iscntrl(i));
+		}
+	}
+
+	if (marker == 1)
+		printf("ft_iscntrl passed all tests\n");
+}
+
+void ft_isgraph_test(void) {
+	int marker = 1;
+	for (int i = -200; i < 257; i++) {
+		if ((isgraph(i) == 0 && ft_isgraph(i) > 0) || (isgraph(i) > 0 && ft_isgraph(i) == 0))
+		{
+			marker = 0;
+			printf("\tFAIL ft_iscntrl: for i = %i expected %i, received %i\n", i, isgraph(i), ft_isgraph(i));
+		}
+	}
+
+	if (marker == 1)
+		printf("ft_isgraph passed all tests\n");
+}
+
+
+void ft_isspace_test(void) {
+	int marker = 1;
+	for (int i = -200; i < 257; i++) {
+		if ((isspace(i) == 0 && ft_isspace(i) > 0) || (isspace(i) > 0 && ft_isspace(i) == 0))
+		{
+			marker = 0;
+			printf("\tFAIL ft_isspace: for i = %i expected %i, received %i\n", i, isspace(i), ft_isspace(i));
+		}
+	}
+
+	if (marker == 1)
+		printf("ft_isspace passed all tests\n");
+}
+
+void ft_isxdigit_test(void) {
+	int marker = 1;
+	for (int i = -200; i < 257; i++) {
+		if ((isxdigit(i) == 0 && ft_isxdigit(i) > 0) || (isxdigit(i) > 0 && ft_isxdigit(i) == 0))
+		{
+			marker = 0;
+			printf("\tFAIL ft_isxdigit: for i = %i expected %i, received %i\n", i, isxdigit(i), ft_isxdigit(i));
+		}
+	}
+
+	if (marker == 1)
+		printf("ft_isxdigit passed all tests\n");
+}
+
+void ft_strcasecmp_test(void) {
+	int marker = 1;
+	int i;
+	char *s1 = "test";
+	char *s2 = "test ";
+	char *s3 = "TEST";
+	char *s4 = "";
+
+	i = ft_strcasecmp(s1, s1);
+	if (i != 0)
+	{
+		marker = 0;
+		printf("\tFAIL ft_strcasecmp: for s1 '%s' and s2 '%s', expected 0, received %i\n", s1, s1, ft_strcasecmp(s1, s1));
+	}
+
+	i = ft_strcasecmp(s1, s2);
+	if (i == 0)
+	{
+		marker = 0;
+		printf("\tFAIL ft_strcasecmp: for s1 '%s' and s2 '%s', expected NOT 0, received %i\n", s1, s2, ft_strcasecmp(s1, s2));
+	}
+
+	i = ft_strcasecmp(s1, s3);
+	if (i != 0)
+	{
+		marker = 0;
+		printf("\tFAIL ft_strcasecmp: for s1 '%s' and s2 '%s', expected 0, received %i\n", s1, s3, ft_strcasecmp(s1, s3));
+	}
+
+	i = ft_strcasecmp(s1, s4);
+	if (i == 0)
+	{
+		marker = 1;
+		printf("\tFAIL ft_strcasecmp: for s1 '%s' and s2 '%s', expected NOT 0, received %i\n", s1, s4, ft_strcasecmp(s1, s4));
+	}
+
+	if (marker == 1)
+		printf("ft_strcasecmp passed all tests\n");
+}
+
+void ft_strncasecmp_test(void) {
+	int marker = 1;
+	int i;
+	char *s1 = "test";
+	char *s2 = "test ";
+	char *s3 = "TESTooo";
+
+	i = ft_strncasecmp(s1, s2, 4);
+	if (i != 0)
+	{
+		marker = 0;
+		printf("\tFAIL ft_strncasecmp: for s1 '%s' and s2 '%s' and n = 4, expected 0, received %i\n", s1, s2, ft_strncasecmp(s1, s2, 4));
+	}
+
+	i = ft_strncasecmp(s1, s3, 4);
+	if (i != 0)
+	{
+		marker = 0;
+		printf("\tFAIL ft_strncasecmp: for s1 '%s' and s2 '%s' and n = 4, expected 0, received %i\n", s1, s3, ft_strncasecmp(s1, s3, 4));
+	}
+
+	if (marker == 1)
+		printf("ft_strncasecmp passed all tests\n");
+}
+
+void ft_strcasestr_test(void) {
+	int marker = 1;
+	const char *str1 = "test string test string";
+	const char *str2 = "string";
+	const char *str3 = "\tFAIL";
+	const char *str4 = "";
+	const char *str5 = "aaabbbaaabbb";
+	const char *str6 = "abbaaab";
+
+	char *ptr1 = strstr(str1, str2);
+	char *ptr2 = ft_strcasestr(str1, "StrIng");
+	if (ptr1 != ptr2) {
+		marker = 0;
+		printf("\tFAIL ft_strcasestr(1): Expected pointer to '%s', received '%s'\n", ptr1, ptr2);
+	}
+	ptr2 = ft_strcasestr(str1, str3);
+	if (ptr2 != NULL) {
+		marker = 0;
+		printf("\tFAIL ft_strcasestr(2): Expected pointer to NULL\n");
+	}
+	ptr1 = strstr(str1, str4);
+	ptr2 = ft_strcasestr(str1, str4);
+	if (ptr1 != ptr2) {
+		marker = 0;
+		printf("\tFAIL ft_strcasestr(3): Expected pointer to '%s', received '%s'\n", ptr1, ptr2);
+	}
+	ptr1 = strstr(str5, str6);
+	ptr2 = ft_strcasestr(str5, "aBbaaAb");
+	if (ptr1 != ptr2) {
+		marker = 0;
+		printf("\tFAIL ft_strcasestr(4): Expected pointer to '%s', received '%s'\n", str5, str6);
+	}
+	if (marker == 1)
+		printf("ft_strcasestr passed all tests\n");
 }
 
 int main(void) {
@@ -1254,4 +1459,13 @@ int main(void) {
 	ft_lstadd_test();
 	ft_lstiter_test();
 	ft_lstmap_test();
+	ft_islower_test();
+	ft_isupper_test();
+	ft_isblank_test();
+	ft_iscntrl_test();
+	ft_isspace_test();
+	ft_isxdigit_test();
+	ft_strcasecmp_test();
+	ft_strncasecmp_test();
+	ft_strcasestr_test();
 }

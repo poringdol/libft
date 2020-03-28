@@ -48,7 +48,6 @@ SRC_LIST = ft_putstr.c\
 	ft_isascii.c\
 	ft_toupper.c\
 	ft_tolower.c\
-	ft_strlcpy.c\
 	ft_calloc.c\
 	ft_putchar_fd.c\
 	ft_putstr_fd.c\
@@ -59,8 +58,20 @@ SRC_LIST = ft_putstr.c\
 	ft_lstdel.c\
 	ft_lstadd.c\
 	ft_lstiter.c\
-	ft_lstmap.c
-
+	ft_lstmap.c\
+	ft_islower.c\
+	ft_isupper.c\
+	ft_isblank.c\
+	ft_iscntrl.c\
+	ft_isgraph.c\
+	ft_isspace.c\
+	ft_isxdigit.c\
+	ft_strlcpy.c\
+	ft_strcasecmp.c\
+	ft_strncasecmp.c\
+	ft_strcasestr.c\
+	ft_strupcase.c\
+	ft_strlowcase.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_LIST))
 OBJ = $(patsubst %.c, %.o, $(SRC_LIST))
