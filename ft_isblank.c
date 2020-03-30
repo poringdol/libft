@@ -1,4 +1,4 @@
-int     ft_isblank(int ch)
+int	ft_isblank(int ch)
 {
 	if (ch == ' ' || ch == '\t')
 		return (ch);

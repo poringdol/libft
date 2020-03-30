@@ -3,8 +3,8 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 	char	*str;
 
 	if (s1 == NULL || s2 == NULL)

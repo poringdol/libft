@@ -79,9 +79,9 @@ static void	ft_strsplit(char const *s, char **str, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	int		words;
-	int		len;
-	int		i;
+	int	words;
+	int	len;
+	int	i;
 	char	**str;
 
 	if (!s || !c)

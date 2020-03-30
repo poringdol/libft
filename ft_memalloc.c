@@ -3,7 +3,7 @@
 
 void	*ft_memalloc(size_t size)
 {
-	int		i;
+	int	i;
 	char	*ptr;
 
 	ptr = malloc(size * sizeof(char));

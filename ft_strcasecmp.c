@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int     ft_strcasecmp(const char *str1, const char *str2)
+int	ft_strcasecmp(const char *str1, const char *str2)
 {
 	int i;
 	const unsigned char *s1;

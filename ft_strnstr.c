@@ -4,7 +4,7 @@
 char	*ft_strnstr(const char *str1, const char *str2, size_t n)
 {
 	unsigned int	i;
-	char			*ptr;
+	char		*ptr;
 
 	ptr = (char *)str1;
 	if (!ft_strlen(str2))

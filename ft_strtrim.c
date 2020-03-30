@@ -42,8 +42,8 @@ static int	ft_end(char const *s1, char const *set, int end)
 char		*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
-	int		begin;
-	int		end;
+	int	begin;
+	int	end;
 	char	*str;
 
 	if (s1 == NULL)

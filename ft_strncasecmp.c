@@ -1,7 +1,7 @@
 #include <string.h>
 #include "libft.h"
 
-int     ft_strncasecmp(const char *str1, const char *str2, size_t n)
+int	ft_strncasecmp(const char *str1, const char *str2, size_t n)
 {
 	unsigned int	i;
 	unsigned char	*s1;

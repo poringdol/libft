@@ -20,9 +20,9 @@ static int count_len(int n)
 
 char	*ft_itoa(int n)
 {
-	int				i;
-	int				len;
-	char*			str;
+	int		i;
+	int		len;
+	char*		str;
 	unsigned int	n_tmp;
 
 	i = n;
