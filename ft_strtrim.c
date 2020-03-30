@@ -1,29 +1,64 @@
 #include <string.h>
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static int	ft_begin(char const *s1, char const *set)
 {
-	int		i;
+	int		begin;
+	size_t	j;
+
+	begin = 0;
+	j = 0;
+	while (set[j])
+	{
+		if (s1[begin] == set[j])
+		{
+			begin++;
+			j = 0;
+		}
+		else
+			j++;
+	}
+	return (begin);
+}
+
+static int	ft_end(char const *s1, char const *set, int end)
+{
+	size_t j;
+
+	j = 0;
+	while (set[j])
+	{
+		if (s1[end] == set[j])
+		{
+			end--;
+			j = 0;
+		}
+		else
+			j++;
+	}
+	return (end);
+}
+
+char		*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	i;
 	int		begin;
 	int		end;
 	char	*str;
 
-	if (s == NULL)
+	if (s1 == NULL)
 		return (NULL);
-	i = 0;
-	while (s[i])
-		i++;
-	begin = 0;
-	while (s[begin] == ' ' || s[begin] == '\n' || s[begin] == '\t')
-		begin++;
+	i = ft_strlen(s1);
+	begin = ft_begin(s1, set);
+
 	end = i - 1;
 	if (begin < end)
-		while (s[end] == ' ' || s[end] == '\n' || s[end] == '\t')
-			end--;
+		end = ft_end(s1, set, end);
 	if (!(str = ft_strnew(end - begin + 1)))
 		return (NULL);
 	i = 0;
 	while (begin <= end)
-		str[i++] = s[begin++];
+		str[i++] = s1[begin++];
+	str[i] = '\0';
 	return (str);
 }

@@ -10,10 +10,10 @@
 #include <stdint.h>
 #include <time.h>
 #include <limits.h>
-#include "libft.h"
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include "libft.h"
 
 char *test_str_int[35] = {
 							"2147483647",
@@ -65,7 +65,7 @@ char *test_str_char[8] = {
 						NULL
 };
 
-
+/***********************************BEGIN****************************************/
 
 
 void ft_tolower_toupper_test(void) {
@@ -894,26 +894,26 @@ void ft_strnequ_test(void) {
 		printf("ft_strnequ passed all tests\n");
 }
 
-void ft_strsub_test(void) {
-	char *strnull = ft_strsub(NULL, 0, 5);
-	char *strerr = ft_strsub("test text", 5, 5);
-	char *str = ft_strsub("test text", 2, 5);
+void ft_substr_test(void) {
+	char *strnull = ft_substr(NULL, 0, 5);
+	char *strerr = ft_substr("test text", 5, 5);
+	char *str = ft_substr("test text", 2, 5);
 	int marker = 1;
 	if (strnull != NULL) {
 		marker = 0;
-		printf("\tFAIL ft_strsub: for ('NULL', 0, 5) expected 'NULL', received '%s'\n", strnull);
+		printf("\tFAIL ft_substr: for ('NULL', 0, 5) expected 'NULL', received '%s'\n", strnull);
 	}
 	if (strerr != NULL) {
 		marker = 0;
-		printf("\tFAIL ft_strsub: for ('test text', 5, 5) expected 'NULL', received '%s'\n", strerr);
+		printf("\tFAIL ft_substr: for ('test text', 5, 5) expected 'NULL', received '%s'\n", strerr);
 	}
 	if (strcmp(str, "st te")) {
 		marker = 0;
-		printf("\tFAIL ft_strsub: for ('test text', 2, 5) expected 'st te', received '%s'\n", str);
+		printf("\tFAIL ft_substr: for ('test text', 2, 5) expected 'st te', received '%s'\n", str);
 	}
 
 	if (marker == 1)
-		printf("ft_strsub passed all tests\n");
+		printf("ft_substr passed all tests\n");
 	free(str);
 	free(strerr);
 	free(strnull);
@@ -936,14 +936,15 @@ void ft_strjoin_test(void) {
 
 void ft_strtrim_test(void) {
 	int marker = 1;
-
-	char *str1 = ft_strtrim("	 hello world	");
-	char *str2 = ft_strtrim("hello world");
-	char *str3 = ft_strtrim("");
-	char *str4 = ft_strtrim("  \t \t \n   \n\n\n\t");
+	char *null = NULL;
+	char *str1 = ft_strtrim("*-+*/hello world*+/*", "/*-+");
+	char *str2 = ft_strtrim("hello world", "/*-+");
+	char *str3 = ft_strtrim("", "/*-+");
+	char *str4 = ft_strtrim("*/++/**/---", "/*-+");
+	char *str5 = ft_strtrim(null, "/*-+");
 	if (strcmp("hello world", str1)) {
 		marker = 0;
-		printf("\tFAIL ft_strtrim: for ('	 hello world		') expected 'hello world', received '%s'\n", str1);
+		printf("\tFAIL ft_strtrim: for s1 = '*-+*/hello world*+/*', set = '/*-+' expected 'hello world', received '%s'\n", str1);
 	}
 	if (strcmp("hello world", str2)) {
 		marker = 0;
@@ -955,7 +956,11 @@ void ft_strtrim_test(void) {
 	}
 	if (strcmp("", str4)) {
 		marker = 0;
-		printf("\tFAIL ft_strtrim: for blank sting\n");
+		printf("\tFAIL ft_strtrim: for s1 = '*/++/**/---', set = '/*-+'\n");
+	}
+	if (str5 != NULL) {
+		marker = 0;
+		printf("\tFAIL ft_strtrim: for s1 = NULL, set = '/*-+'\n");
 	}
 
 	if (marker == 1)
@@ -966,18 +971,18 @@ void ft_strtrim_test(void) {
 	free(str4);
 }
 
-void ft_strsplit_test(void) {
+void ft_split_test(void) {
 	int marker = 1;
-	char **ptr1 = ft_strsplit("** coronavirus*will*kill* us*all**", '*');
+	char **ptr1 = ft_split("** coronavirus*will*kill* us*all**", '*');
 	char *ptr2[5] = {" coronavirus","will","kill"," us","all"};
 	for (int i = 0; ptr1[i] && ptr2[i]; i++) {
 		if (strcmp(ptr1[i], ptr2[i])) {
 			marker = 0;
-			printf("\tFAIL ft_strsplit: for i = %i expected '%s', received '%s'\n", i, ptr2[i], ptr1[i]);
+			printf("\tFAIL ft_split: for i = %i expected '%s', received '%s'\n", i, ptr2[i], ptr1[i]);
 		}
 	}
 	if (marker == 1)
-		printf("ft_strsplit passed all tests\n");
+		printf("ft_split passed all tests\n");
 	for (int i = 0; ptr1[i]; i++)
 		free(ptr1[i]);
 	free(ptr1);
@@ -1028,187 +1033,180 @@ void ft_putnbr_test(void) {
 
 void ft_lstnew_test(void) {
 	int		marker = 1;
-	size_t	content_size;
 	void	*ptr;
 	t_list	*list;
 
 	ptr = NULL;
-	content_size = 0;
-	list = ft_lstnew(ptr, content_size);
-	if (list->content != NULL && list->content_size != 0) {
+	list = ft_lstnew(ptr);
+	if (list->content != NULL) {
 		marker = 0;
-		printf("\tFAIL ft_lstnew: for content = NULL and content_size = 0\n");
+		printf("\tFAIL ft_lstnew: for content = NULL\n");
 	}
 	free(list);
+
 	int i = 15;
-	int i2 = 15;
-	content_size = sizeof(i);
-	list = ft_lstnew(&i, content_size);
-	i = 10;
-	if (*(int *)(list->content) != i2 || list->content_size != sizeof(int)) {
+	list = ft_lstnew(&i);
+	if (*(int *)(list->content) != i) {
 		marker = 0;
-		printf("\tFAIL ft_lstnew: for content int i = 15 and content_size = sizeof(int)\n");
-		printf("\tExpected i = '%i', content_size = %li, received i = '%i', content_size = %li\n", i2, sizeof(i), *((int *)(list->content)), content_size);
+		printf("\tFAIL ft_lstnew: for content int i = 15\n");
+		printf("\tExpected i = '%i', received i = '%i'\n", i, *((int *)(list->content)));
 	}
-	free(list->content); free(list);
+	free(list);
 
 	char *s = "test string";
-	char *s2 = "test string";
-	content_size = strlen(s) + 1;
-	list = ft_lstnew(s, content_size);
-	s = "TEST STRING";
-	if (strcmp ((char *)(list->content), s2) || list->content_size != strlen(s) + 1) {
+	list = ft_lstnew(s);
+	if (strcmp ((char *)(list->content), s)) {
 		marker = 0;
-		printf("\tFAIL ft_lstnew: for content s = 'test string' and content_size = strlen(s) + 1\n");
-		printf("\tExpected s = '%s', content_size = %li, received s = '%s', content_size = %li\n", s2, strlen(s) + 1, (char *)(list->content), content_size);
+		printf("\tFAIL ft_lstnew: for content s = 'test string'\n");
+		printf("\tExpected s = '%s', received s = '%s'\n", s, (char *)(list->content));
 	}
-	free(list->content); free(list);
+	free(list);
 
 	if (marker == 1)
 		printf("ft_lstnew passed all tests\n");
 }
 
-void del_test(void *ptr, size_t size) {
-	free(ptr);
-	(void)size;
-}
+// void del_test(void *ptr, size_t size) {
+// 	free(ptr);
+// 	(void)size;
+// }
 
-void ft_lstdelone_test(void) {
-	int marker = 1;
+// void ft_lstdelone_test(void) {
+// 	int marker = 1;
 
-	int i = 15;
-	size_t size = sizeof(int);
-	t_list *list = ft_lstnew(&i, size);
-	list->next = ft_lstnew(&i, size);
+// 	int i = 15;
+// 	size_t size = sizeof(int);
+// 	t_list *list = ft_lstnew(&i, size);
+// 	list->next = ft_lstnew(&i, size);
 
-	ft_lstdelone(&list->next, del_test);
-	if (list->next != NULL) {
-		marker = 0;
-		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
-	}
+// 	ft_lstdelone(&list->next, del_test);
+// 	if (list->next != NULL) {
+// 		marker = 0;
+// 		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
+// 	}
 
-	ft_lstdelone(&list, del_test);
-	if (list != NULL) {
-		marker = 0;
-		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
-	}
+// 	ft_lstdelone(&list, del_test);
+// 	if (list != NULL) {
+// 		marker = 0;
+// 		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
+// 	}
 
-	list = NULL;
-	ft_lstdelone(&list, del_test);
+// 	list = NULL;
+// 	ft_lstdelone(&list, del_test);
 
-	if (marker == 1)
-		printf("ft_lstdelone set pointer list to NULL. *** Check valgrind.log ***\n");
-}
+// 	if (marker == 1)
+// 		printf("ft_lstdelone set pointer list to NULL. *** Check valgrind.log ***\n");
+// }
 
-void ft_lstdel_test(void) {
-	int marker = 1;
+// void ft_lstdel_test(void) {
+// 	int marker = 1;
 
-	int i = 15;
-	size_t size = sizeof(int);
-	t_list *list = ft_lstnew(&i, size);
-	list->next = ft_lstnew(&i, size);
-	list->next->next = ft_lstnew(&i, size);
+// 	int i = 15;
+// 	size_t size = sizeof(int);
+// 	t_list *list = ft_lstnew(&i, size);
+// 	list->next = ft_lstnew(&i, size);
+// 	list->next->next = ft_lstnew(&i, size);
 
 
-	ft_lstdel(&list, del_test);
-	if (list != NULL) {
-		marker = 0;
-		printf("\tFAIL ft_lstdel: pointer didn't set to NULL\n");
-	}
+// 	ft_lstdel(&list, del_test);
+// 	if (list != NULL) {
+// 		marker = 0;
+// 		printf("\tFAIL ft_lstdel: pointer didn't set to NULL\n");
+// 	}
 
-	ft_lstdel(&list, del_test);
+// 	ft_lstdel(&list, del_test);
 
-	if (marker == 1)
-		printf("ft_lstdel set pointer list to NULL. *** Check valgrind.log ***\n");
-}
+// 	if (marker == 1)
+// 		printf("ft_lstdel set pointer list to NULL. *** Check valgrind.log ***\n");
+// }
 
-void ft_lstadd_test(void) {
-		int marker = 1;
+// void ft_lstadd_test(void) {
+// 		int marker = 1;
 
-	int i1 = 15;
-	int i2 = 50;
-	t_list *list;
-	t_list *list_add;
-	size_t size = sizeof(int);
+// 	int i1 = 15;
+// 	int i2 = 50;
+// 	t_list *list;
+// 	t_list *list_add;
+// 	size_t size = sizeof(int);
 
-	list = ft_lstnew(&i1, size);
-	list_add = ft_lstnew(&i2, size);
-	ft_lstadd(&list, list_add);
-	if (*((int *)(list->content)) != 50) {
-		marker = 0;
-		printf("\tFAIL ft_lstadd: test failed\n");
-	}
-	ft_lstdel(&list, del_test);
+// 	list = ft_lstnew(&i1, size);
+// 	list_add = ft_lstnew(&i2, size);
+// 	ft_lstadd(&list, list_add);
+// 	if (*((int *)(list->content)) != 50) {
+// 		marker = 0;
+// 		printf("\tFAIL ft_lstadd: test failed\n");
+// 	}
+// 	ft_lstdel(&list, del_test);
 
-	list = NULL;
-	list_add = ft_lstnew(&i2, size);
-	ft_lstadd(&list, list_add);
-	if (*((int *)(list->content)) != 50) {
-		marker = 0;
-		printf("\tFAIL ft_lstadd: test failed\n");
-	}
-	ft_lstdel(&list, del_test);
+// 	list = NULL;
+// 	list_add = ft_lstnew(&i2, size);
+// 	ft_lstadd(&list, list_add);
+// 	if (*((int *)(list->content)) != 50) {
+// 		marker = 0;
+// 		printf("\tFAIL ft_lstadd: test failed\n");
+// 	}
+// 	ft_lstdel(&list, del_test);
 
-	if (marker == 1)
-		printf("ft_lstadd passed all tests\n");
-}
+// 	if (marker == 1)
+// 		printf("ft_lstadd passed all tests\n");
+// }
 
-void f_test(t_list *list) {
-	*((int *)list->content) += 35;
-}
+// void f_test(t_list *list) {
+// 	*((int *)list->content) += 35;
+// }
 
-void ft_lstiter_test(void) {
-	int marker = 1;
+// void ft_lstiter_test(void) {
+// 	int marker = 1;
 
-	int i1 = 15;
-	t_list *list;
-	size_t size = sizeof(int);
+// 	int i1 = 15;
+// 	t_list *list;
+// 	size_t size = sizeof(int);
 
-	list = ft_lstnew(&i1, size);
-	list->next = ft_lstnew(&i1, size);
-	list->next->next = ft_lstnew(&i1, size);
-	ft_lstiter(list, f_test);
-	if (*((int *)(list->content)) != 50 || *((int *)(list->next->content)) != 50 || *((int *)(list->next->next->content)) != 50) {
-		marker = 0;
-		printf("\tFAIL ft_lstiter: test failed\n");
-	}
-	ft_lstdel(&list, del_test);
+// 	list = ft_lstnew(&i1, size);
+// 	list->next = ft_lstnew(&i1, size);
+// 	list->next->next = ft_lstnew(&i1, size);
+// 	ft_lstiter(list, f_test);
+// 	if (*((int *)(list->content)) != 50 || *((int *)(list->next->content)) != 50 || *((int *)(list->next->next->content)) != 50) {
+// 		marker = 0;
+// 		printf("\tFAIL ft_lstiter: test failed\n");
+// 	}
+// 	ft_lstdel(&list, del_test);
 
-	if (marker == 1)
-		printf("ft_lstiter passed all tests\n");
-}
+// 	if (marker == 1)
+// 		printf("ft_lstiter passed all tests\n");
+// }
 
-t_list *f_test1(t_list *list) {
-	*((int *)list->content) += 35;
-	return (list);
-}
+// t_list *f_test1(t_list *list) {
+// 	*((int *)list->content) += 35;
+// 	return (list);
+// }
 
-void ft_lstmap_test(void) {
-	int marker = 1;
+// void ft_lstmap_test(void) {
+// 	int marker = 1;
 
-	int i1 = 15;
-	t_list *list;
-	size_t size = sizeof(int);
-	list = ft_lstnew(&i1, size);
-	list->next = ft_lstnew(&i1, size);
-	list->next->next = ft_lstnew(&i1, size);
+// 	int i1 = 15;
+// 	t_list *list;
+// 	size_t size = sizeof(int);
+// 	list = ft_lstnew(&i1, size);
+// 	list->next = ft_lstnew(&i1, size);
+// 	list->next->next = ft_lstnew(&i1, size);
 
-	t_list *list_new = ft_lstmap(list, f_test1);
-	if (*((int *)(list_new->content)) != 50 || *((int *)(list_new->next->content)) != 50 || *((int *)(list_new->next->next->content)) != 50) {
-		marker = 0;
-		printf("\tFAIL ft_lstmap: test failed\n");
-	}
-	if (*((int *)(list->content)) != 15 || *((int *)(list->next->content)) != 15 || *((int *)(list->next->next->content)) != 15) {
-		marker = 0;
-		printf("\tFAIL ft_lstmap: you changed the source list\n");
-	}
+// 	t_list *list_new = ft_lstmap(list, f_test1);
+// 	if (*((int *)(list_new->content)) != 50 || *((int *)(list_new->next->content)) != 50 || *((int *)(list_new->next->next->content)) != 50) {
+// 		marker = 0;
+// 		printf("\tFAIL ft_lstmap: test failed\n");
+// 	}
+// 	if (*((int *)(list->content)) != 15 || *((int *)(list->next->content)) != 15 || *((int *)(list->next->next->content)) != 15) {
+// 		marker = 0;
+// 		printf("\tFAIL ft_lstmap: you changed the source list (не факт, что эта проверка нужна)\n");
+// 	}
 
-	ft_lstdel(&list_new, del_test);
-	ft_lstdel(&list, del_test);
+// 	ft_lstdel(&list_new, del_test);
+// 	ft_lstdel(&list, del_test);
 
-	if (marker == 1)
-		printf("ft_lstmap passed all tests\n");
-}
+// 	if (marker == 1)
+// 		printf("ft_lstmap passed all tests\n");
+// }
 
 void ft_islower_test(void) {
 	int marker = 1;
@@ -1445,20 +1443,20 @@ int main(void) {
 	ft_strmapi_test();
 	ft_strequ_test();
 	ft_strnequ_test();
-	ft_strsub_test();
+	ft_substr_test();
 	ft_strjoin_test();
 	ft_strtrim_test();
-	ft_strsplit_test();
+	ft_split_test();
 	ft_itoa_test();
 	ft_putstr_test();
 	ft_putendl_test();
 	ft_putnbr_test();
 	ft_lstnew_test();
-	ft_lstdelone_test();
-	ft_lstdel_test();
-	ft_lstadd_test();
-	ft_lstiter_test();
-	ft_lstmap_test();
+	// ft_lstdelone_test();
+	// ft_lstdel_test();
+	// ft_lstadd_test();
+	// ft_lstiter_test();
+	// ft_lstmap_test();
 	ft_islower_test();
 	ft_isupper_test();
 	ft_isblank_test();

@@ -50,7 +50,7 @@ static int	ft_word_len(char const *s, char c)
 	return (max_len);
 }
 
-static void	ft_split(char const *s, char **str, char c)
+static void	ft_strsplit(char const *s, char **str, char c)
 {
 	int i;
 	int j;
@@ -77,7 +77,7 @@ static void	ft_split(char const *s, char **str, char c)
 	}
 }
 
-char	**ft_strsplit(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	int		words;
 	int		len;
@@ -98,6 +98,6 @@ char	**ft_strsplit(char const *s, char c)
 		str[i] = ft_strnew(len + 1);
 		i++;
 	}
-	ft_split(s, str, c);
+	ft_strsplit(s, str, c);
 	return (str);
 }
