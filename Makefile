@@ -34,9 +34,10 @@ SRC=ft_memset.c\
 	ft_putendl_fd.c\
 	ft_putnbr_fd.c\
 	ft_lstnew.c\
+	ft_lstadd_front.c\
+	ft_lstsize.c\
 	ft_lstdelone.c\
 	ft_lstclear.c\
-	ft_lstadd.c\
 	ft_lstiter.c\
 	ft_putstr.c\
 	ft_strnew.c\

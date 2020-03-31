@@ -3,3 +3,4 @@ libft.a
 libft.so
 test
 valgrind.log
+.DS_Store
