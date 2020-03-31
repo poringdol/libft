@@ -98,16 +98,16 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME)
 	@echo "$(GREEN)  Library $(NAME) created  $(BW)"
 	
-%.o: %.c
-	$(CC) $(FLAGS) $(HEADER) -c $(SRC)
-	$(CC) $(FLAGS) $(HEADER) -c $(SRCBON)
-	@echo "$(GREEN)  Object files created  $(BW)"
-
-bonus: $(OBJ) $(OBJBON)
+bonus: $(OBJ)
 	ar rc $(NAME) $(OBJ) $(OBJBON)
 	@echo "$(GREEN)  Mandatory and bonus object files archived  $(BW)"
 	@ranlib $(NAME)
 	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(BW) $(GREEN)funtions created  $(BW)"
+
+%.o: %.c
+	$(CC) $(FLAGS) $(HEADER) -c $(SRC)
+	$(CC) $(FLAGS) $(HEADER) -c $(SRCBON)
+	@echo "$(GREEN)  Object files created  $(BW)"
 
 so:
 	$(CC) -L ./ $(FLAGS) $(OBJ) $(OBJBON) -shared -o libft.so
