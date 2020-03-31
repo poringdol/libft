@@ -1,5 +1,8 @@
-NAME=libft.a
-SRC=ft_memset.c\
+BW = \033[0;0m
+RED = \033[0;31m
+GREEN = \033[0;32m
+PURPLE = \033[0;35m
+SRC = ft_memset.c\
 	ft_bzero.c\
 	ft_memcpy.c\
 	ft_memccpy.c\
@@ -32,8 +35,11 @@ SRC=ft_memset.c\
 	ft_putchar_fd.c\
 	ft_putstr_fd.c\
 	ft_putendl_fd.c\
-	ft_putnbr_fd.c\
-	ft_lstnew.c\
+	ft_putnbr_fd.c
+
+OBJ = $(SRC:.c=.o)
+
+SRCBON = ft_lstnew.c\
 	ft_lstadd_front.c\
 	ft_lstsize.c\
 	ft_lstlast.c\
@@ -74,28 +80,45 @@ SRC=ft_memset.c\
 	ft_strcasestr.c\
 	ft_strupcase.c\
 	ft_strlowcase.c
-OBJ = $(SRC:.c=.o)
-HEADER=-I./
-FLAGS=-Wall -Werror -Wextra -ggdb3
+OBJBON = $(SRCBON:.c=.o)
+
+NAME = libft.a
+
+CC = gcc
+
+HEADER = -I./
+
+FLAGS = -Wall -Werror -Wextra -fPIC -ggdb3
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(FLAGS) -fPIC $(HEADER) -c $? $(SRC)
+$(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@echo "$(GREEN)  Mandatory object files archived  $(BW)"
+	@ranlib $(NAME)
+	@echo "$(GREEN)  Library $(NAME) created  $(BW)"
+	
+%.o: %.c
+	$(CC) $(FLAGS) $(HEADER) -c $(SRC)
+	$(CC) $(FLAGS) $(HEADER) -c $(SRCBON)
+	@echo "$(GREEN)  Object files created  $(BW)"
+
+bonus: $(OBJ) $(OBJBON)
+	ar rc $(NAME) $(OBJ) $(OBJBON)
+	@echo "$(GREEN)  Mandatory and bonus object files archived  $(BW)"
+	@ranlib $(NAME)
+	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(BW) $(GREEN)funtions created  $(BW)"
 
 so:
-	gcc $(FLAGS) $(OBJ) -shared -o libft.so
-
-test: $(SRC)
-	@gcc $(FLAGS) $(SRC) test.c $(HEADER) -o test
+	$(CC) -L ./ $(FLAGS) $(OBJ) $(OBJBON) -shared -o libft.so
 
 clean:
-	/bin/rm -f $(OBJ)
+	@/bin/rm -f $(OBJ) $(OBJBON)
+	@echo "$(RED)  Object files deleted  $(BW)"
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
+	@echo "$(RED)  Library $(NAME) deleted  $(BW)"
 
 re: fclean all
 
