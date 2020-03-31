@@ -1082,11 +1082,11 @@ void ft_lstdelone_test(void) {
 
 
 	ft_lstdelone(list, del_test);
-//	if (list->content != NULL) {
-//		marker = 0;
-//		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
-//	}
-
+/*	if (list->content != NULL) {
+		marker = 0;
+		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
+	}
+*/
 	if ((*((int *)tmp->content)) != 15) {
 		marker = 0;
 		printf("\tFAIL ft_lstdelone: The memory of next must not be freed\n");
@@ -1170,8 +1170,8 @@ void ft_lstsize_test(void) {
 		marker = 0;
 		printf("\tFAIL ft_lstsize: expected 3, received %i\n", ft_lstsize(list1));
 	}
-//	ft_lstclear(&list1, del_test);
-//	ft_lstclear(&list2, del_test);
+	ft_lstclear(&list1, del_test);
+	ft_lstclear(&list2, del_test);
 
 	n = ft_lstsize(list1);
 	if (n != 3) {
