@@ -376,15 +376,15 @@ void ft_strcat_test(void) {
 
 void ft_strncpy_test(void) {
 	int marker = 1;
-//	char s1_1[5] = {0};
-//	char s1_2[5] = {0};
+	char s1_1[5] = {0};
+	char s1_2[5] = {0};
 	char s2_1[10] = {0};
 	char s2_2[10] = {0};
 	char s3_1[20] = {0};
 	char s3_2[20] = {0};
 	char *str = "proverka strncpy";
 
-/*	strncpy(s1_1, str, 8);						// dst < n, dst < src, n < src
+	strncpy(s1_1, str, 8);						// dst < n, dst < src, n < src
 	ft_strncpy(s1_2, str, 8);
 	if (memcmp(s1_1, s1_2, 5)) {
 		marker = 0;
@@ -392,14 +392,14 @@ void ft_strncpy_test(void) {
 	}
 	memset(s1_1, 0, 5);
 	memset(s1_2, 0, 5);
-*/
-/*	strncpy(s1_1, str, 20);						// dst < n, dst < src, n > src
+
+	strncpy(s1_1, str, 20);						// dst < n, dst < src, n > src
 	ft_strncpy(s1_2, str, 20);
 	if (memcmp(s1_1, s1_2, 5)) {
 		marker = 0;
 		printf("\tFAIL ft_strncpy: For dst size = 5, n = 20 expected '%s', received '%s'\n", s1_1, s1_2);
 	}
-*//*	memset(s1_1, 0, 5);
+	memset(s1_1, 0, 5);
 	memset(s1_2, 0, 5);
 
 	strncpy(s3_1, str, 25);						// dst < n, dst > src, n > src
@@ -408,7 +408,7 @@ void ft_strncpy_test(void) {
 		marker = 0;
 		printf("\tFAIL ft_strncpy: For dst size = 20, n = 25 expected '%s', received '%s'\n", s3_1, s3_2);
 	}
-*/	memset(s3_1, 0, 20);
+	memset(s3_1, 0, 20);
 	memset(s3_2, 0, 20);
 
 	strncpy(s2_1, str, 8);						// dst > n, dst < src, n < src
@@ -1082,10 +1082,10 @@ void ft_lstdelone_test(void) {
 
 
 	ft_lstdelone(list, del_test);
-//	if (list->content != NULL) {
-//		marker = 0;
-//		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
-//	}
+	if (list->content != NULL) {
+		marker = 0;
+		printf("\tFAIL ft_lstdelone: pointer didn't set to NULL\n");
+	}
 
 	if ((*((int *)tmp->content)) != 15) {
 		marker = 0;
@@ -1133,7 +1133,7 @@ void ft_lstadd_front_test(void) {
 		marker = 0;
 		printf("\tFAIL ft_lstadd_front: test failed\n");
 	}
-//	free(list); free(list_add);
+	free(list); free(list_add);
 
 	list = NULL;
 	list_add = ft_lstnew(&i2);
@@ -1142,7 +1142,7 @@ void ft_lstadd_front_test(void) {
 		marker = 0;
 		printf("\tFAIL ft_lstadd_front: test failed\n");
 	}
-//	free(list_add);
+	free(list_add);
 
 	if (marker == 1)
 		printf("ft_lstadd_front passed all tests\n");
@@ -1170,8 +1170,8 @@ void ft_lstsize_test(void) {
 		marker = 0;
 		printf("\tFAIL ft_lstsize: expected 3, received %i\n", ft_lstsize(list1));
 	}
-//	ft_lstclear(&list1, del_test);
-//	ft_lstclear(&list2, del_test);
+	ft_lstclear(&list1, del_test);
+	ft_lstclear(&list2, del_test);
 
 	n = ft_lstsize(list1);
 	if (n != 3) {
