@@ -95,7 +95,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	while (i < words)
 	{
-		str[i] = ft_strnew(len + 1);
+		str[i] = ft_calloc((len + 1), sizeof(char));
 		i++;
 	}
 	ft_strsplit(s, str, c);

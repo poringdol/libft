@@ -13,7 +13,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		i++;
 	if (start + len > i)
 		return (NULL);
-	str = ft_strnew(len);
+	str = ft_calloc(len + 1, sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	i = 0;

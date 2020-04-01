@@ -1,7 +1,7 @@
 #include <string.h>
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char		*ft_strjoin(char const *s1, char const *s2)
 {
 	int	i;
 	int	j;
@@ -15,7 +15,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	while (s2[j])
 		j++;
-	str = ft_strnew(i + j + 1);
+	str = ft_calloc((i + j + 1), sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	i = 0;

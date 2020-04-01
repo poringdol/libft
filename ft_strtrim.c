@@ -54,7 +54,7 @@ char		*ft_strtrim(char const *s1, char const *set)
 	end = i - 1;
 	if (begin < end)
 		end = ft_end(s1, set, end);
-	if (!(str = ft_strnew(end - begin + 1)))
+	if (!(str = ft_calloc((end - begin + 2), sizeof(char))))
 		return (NULL);
 	i = 0;
 	while (begin <= end)

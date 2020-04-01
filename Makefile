@@ -1,4 +1,4 @@
-BW = \033[0;0m
+B&W = \033[0;0m
 RED = \033[0;31m
 GREEN = \033[0;32m
 PURPLE = \033[0;35m
@@ -88,37 +88,37 @@ CC = gcc
 
 HEADER = -I./
 
-FLAGS = -Wall -Werror -Wextra -fPIC -ggdb3
+FLAGS = -Wall -Werror -Wextra -ggdb3
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	@echo "$(GREEN)  Mandatory object files archived  $(BW)"
+	@ar rc $(NAME) $(OBJ)
+	@echo "$(GREEN)  Mandatory object files archived  $(B&W)"
 	@ranlib $(NAME)
-	@echo "$(GREEN)  Library $(NAME) created  $(BW)"
+	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
 	
 bonus: $(OBJ)
-	ar rc $(NAME) $(OBJ) $(OBJBON)
-	@echo "$(GREEN)  Mandatory and bonus object files archived  $(BW)"
+	@ar rc $(NAME) $(OBJ) $(OBJBON)
+	@echo "$(GREEN)  Mandatory and bonus object files archived  $(B&W)"
 	@ranlib $(NAME)
-	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(BW) $(GREEN)funtions created  $(BW)"
+	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
 
 %.o: %.c
-	$(CC) $(FLAGS) $(HEADER) -c $(SRC)
-	$(CC) $(FLAGS) $(HEADER) -c $(SRCBON)
-	@echo "$(GREEN)  Object files created  $(BW)"
+	@$(CC) $(FLAGS) $(HEADER) -c $(SRC)
+	@$(CC) $(FLAGS) $(HEADER) -c $(SRCBON)
+	@echo "$(GREEN)  Object files created  $(B&W)"
 
 so:
 	$(CC) -L ./ $(FLAGS) $(OBJ) $(OBJBON) -shared -o libft.so
 
 clean:
 	@/bin/rm -f $(OBJ) $(OBJBON)
-	@echo "$(RED)  Object files deleted  $(BW)"
+	@echo "$(RED)  Object files deleted  $(B&W)"
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@echo "$(RED)  Library $(NAME) deleted  $(BW)"
+	@echo "$(RED)  Library $(NAME) deleted  $(B&W)"
 
 re: fclean all
 

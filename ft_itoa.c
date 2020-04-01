@@ -27,7 +27,7 @@ char	*ft_itoa(int n)
 
 	i = n;
 	len = count_len(n);
-	if (!(str = ft_strnew(len)))
+	if (!(str = ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
 	if (n < 0)
 	{
