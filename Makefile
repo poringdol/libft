@@ -43,47 +43,47 @@ OBJS = $(SRCS:.c=.o)
 OBJDIR = ./objects/
 OBJ = $(addprefix $(OBJDIR), $(OBJS))
 
-SRCS_B = ft_lstnew_bonus.c\
-	ft_lstadd_front_bonus.c\
-	ft_lstsize_bonus.c\
-	ft_lstlast_bonus.c\
-	ft_lstadd_back_bonus.c\
-	ft_lstdelone_bonus.c\
-	ft_lstclear_bonus.c\
-	ft_lstiter_bonus.c\
-	ft_putstr_bonus.c\
-	ft_strnew_bonus.c\
-	ft_memalloc_bonus.c\
-	ft_memdel_bonus.c\
-	ft_striter_bonus.c\
-	ft_strequ_bonus.c\
-	ft_strclr_bonus.c\
-	ft_putchar_bonus.c\
-	ft_putendl_bonus.c\
-	ft_strnequ_bonus.c\
-	ft_striteri_bonus.c\
-	ft_strdel_bonus.c\
-	ft_strmap_bonus.c\
-	ft_putnbr_bonus.c\
-	ft_strcpy_bonus.c\
-	ft_strncpy_bonus.c\
-	ft_strcat_bonus.c\
-	ft_strncat_bonus.c\
-	ft_strstr_bonus.c\
-	ft_strcmp_bonus.c\
-	ft_lstmap_bonus.c\
-	ft_islower_bonus.c\
-	ft_isupper_bonus.c\
-	ft_isblank_bonus.c\
-	ft_iscntrl_bonus.c\
-	ft_isgraph_bonus.c\
-	ft_isspace_bonus.c\
-	ft_isxdigit_bonus.c\
-	ft_strcasecmp_bonus.c\
-	ft_strncasecmp_bonus.c\
-	ft_strcasestr_bonus.c\
-	ft_strupcase_bonus.c\
-	ft_strlowcase_bonus.c
+SRCS_B = ft_lstnew.c\
+	ft_lstadd_front.c\
+	ft_lstsize.c\
+	ft_lstlast.c\
+	ft_lstadd_back.c\
+	ft_lstdelone.c\
+	ft_lstclear.c\
+	ft_lstiter.c\
+	ft_putstr.c\
+	ft_strnew.c\
+	ft_memalloc.c\
+	ft_memdel.c\
+	ft_striter.c\
+	ft_strequ.c\
+	ft_strclr.c\
+	ft_putchar.c\
+	ft_putendl.c\
+	ft_strnequ.c\
+	ft_striteri.c\
+	ft_strdel.c\
+	ft_strmap.c\
+	ft_putnbr.c\
+	ft_strcpy.c\
+	ft_strncpy.c\
+	ft_strcat.c\
+	ft_strncat.c\
+	ft_strstr.c\
+	ft_strcmp.c\
+	ft_lstmap.c\
+	ft_islower.c\
+	ft_isupper.c\
+	ft_isblank.c\
+	ft_iscntrl.c\
+	ft_isgraph.c\
+	ft_isspace.c\
+	ft_isxdigit.c\
+	ft_strcasecmp.c\
+	ft_strncasecmp.c\
+	ft_strcasestr.c\
+	ft_strupcase.c\
+	ft_strlowcase.c
 SRC_BDIR = ./sources_bonus/
 
 OBJS_B = $(SRCS_B:.c=.o)
@@ -106,7 +106,7 @@ $(NAME): dir $(OBJ)
 	@ranlib $(NAME)
 	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
 
-bonus: dir $(OBJ) $(OBJ_B) 
+bonus: dir $(OBJ) $(OBJ_B)
 	@ar rc $(NAME) $(OBJ) $(OBJBON)
 	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
 	@ranlib $(NAME)
