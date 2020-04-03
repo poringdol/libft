@@ -100,6 +100,7 @@ FLAGS = -Wall -Werror -Wextra -ggdb3 -I
 all: $(NAME)
 
 $(NAME): dir $(OBJ)
+	test -d $(OBJDIR) || mkdir $(OBJDIR)
 	@ar rc $(NAME) $(OBJ)
 	@echo "$(GREEN)  MAIN object files archived  $(B&W)"
 	@ranlib $(NAME)
@@ -112,9 +113,12 @@ bonus: dir $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
 
 dir:
-	@mkdir -p $(OBJDIR)
+	test -d $(OBJDIR) || mkdir $(OBJDIR)
+#	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
+#	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+#	@mkdir -p $(OBJDIR)
 	@$(CC) $(FLAGS) $(HEADER) -c $< -o $@
 	@echo "$(GREEN)  Object file $@ created  $(B&W)"
 
