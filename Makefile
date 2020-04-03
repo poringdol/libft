@@ -53,7 +53,6 @@ SRCS_B = ft_lstnew.c\
 	ft_lstiter.c\
 	ft_putstr.c\
 	ft_strnew.c\
-	ft_memalloc.c\
 	ft_memdel.c\
 	ft_striter.c\
 	ft_strequ.c\
