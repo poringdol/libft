@@ -106,7 +106,7 @@ $(NAME): dir $(OBJ)
 	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
 
 bonus: dir $(OBJ) $(OBJ_B)
-	@ar rc $(NAME) $(OBJ) $(OBJBON)
+	@ar rc $(NAME) $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
 	@ranlib $(NAME)
 	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
