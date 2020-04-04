@@ -42,7 +42,7 @@ char	**ft_split(char const *s, char c);									разбивает строку 
 int		ft_strcasecmp(const char *str1, const char *str2);					сравнение двух строк без учета регистра
 char	*ft_strcasestr(const char *str1, const char *str2); 				аналог strstr без учета регистра
 char	*ft_strcat(char *dst, const char *src); 							добавляет строку src в конец строки dst, не выделяет память
-char	*ft_strchr(const char *str, int ch);								ищет символ в строке (в т.ч. '\0') и возвращает указатель на этот символ. Если после проверки n байтов символ не найден, возвращает NULL
+char	*ft_strchr(const char *str, int ch);								ищет символ в строке (в т.ч. '\0') и возвращает указатель на этот символ. Если символ не найден, возвращает NULL
 void	ft_strclr(char *s); 												устанавливает значения строки в '\0'
 int		ft_strcmp(const char *str1, const char *str2);						сравнивает строки, возвращает 0, если они идентичны
 char	*ft_strcpy(char *dst, const char *src); 							копирует строку src в строку dst
