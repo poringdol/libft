@@ -1,3 +1,5 @@
+SHELL = /bin/sh
+
 B&W = \033[0;0m
 RED =  \033[0;31m
 GREEN = \033[0;32m
@@ -92,42 +94,45 @@ OBJ_B = $(addprefix $(OBJ_BDIR), $(OBJS_B))
 NAME = libft.a
 
 CC = gcc
+FLAGS = -Wall -Werror -Wextra -ggdb3
+
+ARCHIVE = ar rc
+RUNLIB = ranlib
 
 HEADER = ./includes/
-
-FLAGS = -Wall -Werror -Wextra -ggdb3 -I
 
 all: $(NAME)
 
 $(NAME): dir $(OBJ)
-	test -d $(OBJDIR) || mkdir $(OBJDIR)
-	@ar rc $(NAME) $(OBJ)
+	@$(ARCHIVE) $(NAME) $(OBJ)
 	@echo "$(GREEN)  MAIN object files archived  $(B&W)"
-	@ranlib $(NAME)
+	@$(RUNLIB) $(NAME)
 	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
 
 bonus: dir $(OBJ) $(OBJ_B)
-	@ar rc $(NAME) $(OBJ) $(OBJ_B)
+	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
-	@ranlib $(NAME)
+	@$(RUNLIB) $(NAME)
 	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
 
 dir:
-	test -d $(OBJDIR) || mkdir $(OBJDIR)
+	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 #	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
 #	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 #	@mkdir -p $(OBJDIR)
-	@$(CC) $(FLAGS) $(HEADER) -c $< -o $@
+	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $@ created  $(B&W)"
 
 $(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h $(HEADER)libft_bonus.h
-	@$(CC) $(FLAGS) $(HEADER) -c $< -o $@
+#	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+#	@mkdir -p $(OBJDIR)
+	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
 
 so: dir $(OBJ) $(OBJ_B)
-	@$(CC) -L ./ $(FLAGS) $(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so
+	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 	@echo "$(GREEN)  Library libft.so created  $(B&W)"
 
 clean:
@@ -140,4 +145,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re test
+.PHONY: all bonus clean fclean re test so
