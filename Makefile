@@ -96,8 +96,8 @@ NAME = libft.a
 CC = gcc
 FLAGS = -Wall -Werror -Wextra -ggdb3
 
-ARCHIVE = ar rc
-RUNLIB = ranlib
+ARCHIVE = ar rs
+RANLIB = ranlib
 
 HEADER = ./includes/
 
@@ -106,13 +106,13 @@ all: $(NAME)
 $(NAME): dir $(OBJ)
 	@$(ARCHIVE) $(NAME) $(OBJ)
 	@echo "$(GREEN)  MAIN object files archived  $(B&W)"
-	@$(RUNLIB) $(NAME)
+#	@$(RANLIB) $(NAME)
 	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
 
 bonus: dir $(OBJ) $(OBJ_B)
 	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
-	@$(RUNLIB) $(NAME)
+#	@$(RANLIB) $(NAME)
 	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
 
 dir:
