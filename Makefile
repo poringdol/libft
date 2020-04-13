@@ -103,13 +103,13 @@ HEADER = ./includes/
 
 all: $(NAME)
 
-$(NAME): dir $(OBJ)
+$(NAME): $(OBJ)
 	@$(ARCHIVE) $(NAME) $(OBJ)
 	@echo "$(GREEN)  MAIN object files archived  $(B&W)"
 #	@$(RANLIB) $(NAME)
 	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
 
-bonus: dir $(OBJ) $(OBJ_B)
+bonus: $(OBJ) $(OBJ_B)
 	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
 #	@$(RANLIB) $(NAME)
@@ -120,13 +120,13 @@ dir:
 #	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
-#	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 #	@mkdir -p $(OBJDIR)
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $@ created  $(B&W)"
 
 $(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h $(HEADER)libft_bonus.h
-#	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 #	@mkdir -p $(OBJDIR)
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
