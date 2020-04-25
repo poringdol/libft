@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/25 11:47:39 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/04/25 12:10:34 by pdemocri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <string.h>
 #include "libft.h"
 
-static int count_len(int n)
+static int	count_len(int n)
 {
 	int len;
 
@@ -18,11 +30,11 @@ static int count_len(int n)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
-	int		i;
-	int		len;
-	char*		str;
+	int				i;
+	int				len;
+	char			*str;
 	unsigned int	n_tmp;
 
 	i = n;

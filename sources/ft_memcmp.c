@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/25 11:48:23 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/04/25 12:03:00 by pdemocri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <string.h>
 
-int ft_memcmp(const void *ptr1, const void *ptr2, size_t n)
+int		ft_memcmp(const void *ptr1, const void *ptr2, size_t n)
 {
-	size_t	i;
+	size_t			i;
 	unsigned char	*p1;
 	unsigned char	*p2;
 

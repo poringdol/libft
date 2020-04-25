@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/25 11:49:37 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/04/25 12:21:35 by pdemocri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <string.h>
 #include <stdlib.h>
 #include "libft.h"
@@ -77,11 +89,11 @@ static void	ft_strsplit(char const *s, char **str, char c)
 	}
 }
 
-char	**ft_split(char const *s, char c)
+char		**ft_split(char const *s, char c)
 {
-	int	words;
-	int	len;
-	int	i;
+	int		words;
+	int		len;
+	int		i;
 	char	**str;
 
 	if (!s || !c)

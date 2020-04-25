@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/25 11:50:29 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/04/25 12:22:05 by pdemocri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <string.h>
 #include "libft.h"
 
-size_t	ft_strlcpy (char *dst, const char *src, size_t n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t n)
 {
 	unsigned int i;
 
