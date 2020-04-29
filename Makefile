@@ -53,38 +53,38 @@ SRCS_B = ft_lstnew.c\
 	ft_lstdelone.c\
 	ft_lstclear.c\
 	ft_lstiter.c\
-	ft_putstr.c\
-	ft_strnew.c\
-	ft_memdel.c\
-	ft_striter.c\
-	ft_strequ.c\
-	ft_strclr.c\
-	ft_putchar.c\
-	ft_putendl.c\
-	ft_strnequ.c\
-	ft_striteri.c\
-	ft_strdel.c\
-	ft_strmap.c\
-	ft_putnbr.c\
-	ft_strcpy.c\
-	ft_strncpy.c\
-	ft_strcat.c\
-	ft_strncat.c\
-	ft_strstr.c\
-	ft_strcmp.c\
 	ft_lstmap.c\
-	ft_islower.c\
-	ft_isupper.c\
-	ft_isblank.c\
-	ft_iscntrl.c\
-	ft_isgraph.c\
-	ft_isspace.c\
-	ft_isxdigit.c\
-	ft_strcasecmp.c\
-	ft_strncasecmp.c\
-	ft_strcasestr.c\
-	ft_strupcase.c\
-	ft_strlowcase.c
+	ft_putstr_bonus.c\
+	ft_strnew_bonus.c\
+	ft_memdel_bonus.c\
+	ft_striter_bonus.c\
+	ft_strequ_bonus.c\
+	ft_strclr_bonus.c\
+	ft_putchar_bonus.c\
+	ft_putendl_bonus.c\
+	ft_strnequ_bonus.c\
+	ft_striteri_bonus.c\
+	ft_strdel_bonus.c\
+	ft_strmap_bonus.c\
+	ft_putnbr_bonus.c\
+	ft_strcpy_bonus.c\
+	ft_strncpy_bonus.c\
+	ft_strcat_bonus.c\
+	ft_strncat_bonus.c\
+	ft_strstr_bonus.c\
+	ft_strcmp_bonus.c\
+	ft_islower_bonus.c\
+	ft_isupper_bonus.c\
+	ft_isblank_bonus.c\
+	ft_iscntrl_bonus.c\
+	ft_isgraph_bonus.c\
+	ft_isspace_bonus.c\
+	ft_isxdigit_bonus.c\
+	ft_strcasecmp_bonus.c\
+	ft_strncasecmp_bonus.c\
+	ft_strcasestr_bonus.c\
+	ft_strupcase_bonus.c\
+	ft_strlowcase_bonus.c
 SRC_BDIR = ./sources_bonus/
 
 OBJS_B = $(SRCS_B:.c=.o)
