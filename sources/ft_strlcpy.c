@@ -17,9 +17,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t n)
 {
 	unsigned int i;
 
-	if (src == NULL)
-		return (0);
-	if (n && dst != NULL)
+	if (n)
 	{
 		i = 0;
 		while (src[i] && (i < n - 1))
