@@ -39,7 +39,7 @@ SRCS = ft_memset.c\
 	ft_putstr_fd.c\
 	ft_putendl_fd.c\
 	ft_putnbr_fd.c
-SRCDIR = ./sources/
+SRCDIR = ./
 
 OBJS = $(SRCS:.c=.o)
 OBJDIR = ./objects/
@@ -85,7 +85,7 @@ SRCS_B = ft_lstnew.c\
 	ft_strcasestr_bonus.c\
 	ft_strupcase_bonus.c\
 	ft_strlowcase_bonus.c
-SRC_BDIR = ./sources_bonus/
+SRC_BDIR = ./
 
 OBJS_B = $(SRCS_B:.c=.o)
 OBJ_BDIR = $(OBJDIR)
@@ -99,7 +99,7 @@ FLAGS = -Wall -Werror -Wextra -ggdb3
 ARCHIVE = ar rs
 RANLIB = ranlib
 
-HEADER = ./includes/
+HEADER = ./
 
 all: $(NAME)
 
@@ -131,6 +131,9 @@ $(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h $(HEADER)libft_bonus.h
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
 
+test:
+	$(CC) $(FLAGS) -I$(HEADER) *.c -o test
+
 so: dir $(OBJ) $(OBJ_B)
 	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 	@echo "$(GREEN)  Library libft.so created  $(B&W)"
@@ -140,7 +143,7 @@ clean:
 	@echo "$(RED)  Object files deleted  $(B&W)"
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME) test
 	@echo "$(RED)  Library $(NAME) deleted  $(B&W)"
 
 re: fclean all
