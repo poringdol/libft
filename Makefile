@@ -135,6 +135,9 @@ so: dir $(OBJ) $(OBJ_B)
 	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 	@echo "$(GREEN)  Library libft.so created  $(B&W)"
 
+test:
+	$(CC) $(FLAGS) -I$(HEADER) ./sources/*.c ./sources_bonus/*.c *.c -o test
+
 clean:
 	@/bin/rm -rf $(OBJDIR)
 	@echo "$(RED)  Object files deleted  $(B&W)"
