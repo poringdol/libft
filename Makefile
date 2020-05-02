@@ -143,7 +143,7 @@ clean:
 	@echo "$(RED)  Object files deleted  $(B&W)"
 
 fclean: clean
-	@/bin/rm -f $(NAME) test
+	@/bin/rm -f $(NAME) test libft.so
 	@echo "$(RED)  Library $(NAME) deleted  $(B&W)"
 
 re: fclean all
