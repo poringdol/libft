@@ -6,7 +6,7 @@
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 11:50:29 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 12:22:05 by pdemocri         ###   ########.fr       */
+/*   Updated: 2020/05/02 15:09:09 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t n)
 {
 	unsigned int i;
 
+	if (dst == NULL || src == NULL)
+		return (NULL);
 	if (n)
 	{
 		i = 0;
