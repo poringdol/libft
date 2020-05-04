@@ -42,7 +42,7 @@ SRCS = ft_memset.c\
 SRCDIR = ./
 
 OBJS = $(SRCS:.c=.o)
-OBJDIR = ./objects/
+OBJDIR = ./
 OBJ = $(addprefix $(OBJDIR), $(OBJS))
 
 SRCS_B = ft_lstnew.c\
@@ -133,11 +133,11 @@ so: $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  Library libft.so created  $(B&W)"
 
 clean:
-	@/bin/rm -rf $(OBJDIR)
+	@/bin/rm -rf *.o
 	@echo "$(RED)  Object files deleted  $(B&W)"
 
 fclean: clean
-	@/bin/rm -f $(NAME) test libft.so
+	@/bin/rm -f $(NAME)
 	@echo "$(RED)  Library $(NAME) deleted  $(B&W)"
 
 re: fclean all
