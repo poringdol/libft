@@ -6,7 +6,7 @@
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 11:50:21 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 11:50:23 by pdemocri         ###   ########.fr       */
+/*   Updated: 2020/05/04 17:46:00 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
 	size_t i;
 	size_t length;
-	
+
 	i = 0;
 	while (dst[i] && i < n)
 		i++;

@@ -6,7 +6,7 @@
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 17:33:19 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/05/01 17:36:39 by pdemocri         ###   ########.fr       */
+/*   Updated: 2020/05/04 17:45:47 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void				ft_lstadd_back(t_list **alst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),\
+					void (*del)(void *));
 int					ft_strcmp(const char *str1, const char *str2);
 char				*ft_strstr(const char *str1, const char *str2);
 char				*ft_strncat(char *dst, const char *src, size_t n);
@@ -111,7 +112,8 @@ int					ft_isgraph(int ch);
 int					ft_isspace(int ch);
 int					ft_isxdigit(int ch);
 int					ft_strcasecmp(const char *str1, const char *str2);
-int					ft_strncasecmp(const char *str1, const char *str2, size_t n);
+int					ft_strncasecmp(const char *str1, const char *str2,\
+					size_t n);
 char				*ft_strcasestr(const char *str1, const char *str2);
 char				*ft_strupcase(char *str);
 char				*ft_strlowcase(char *str);

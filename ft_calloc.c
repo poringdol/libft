@@ -6,7 +6,7 @@
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 11:46:23 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 11:46:30 by pdemocri         ###   ########.fr       */
+/*   Updated: 2020/05/04 17:44:17 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	*ft_calloc(size_t n, size_t size)
 	buf = (void *)malloc(buf_size);
 	if (buf == NULL)
 		return (NULL);
-	bzero(buf, buf_size);
+	ft_bzero(buf, buf_size);
 	return ((void *)buf);
 }
