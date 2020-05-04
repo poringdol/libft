@@ -106,34 +106,23 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@$(ARCHIVE) $(NAME) $(OBJ)
 	@echo "$(GREEN)  MAIN object files archived  $(B&W)"
-#	@$(RANLIB) $(NAME)
 	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
 
 bonus: $(OBJ) $(OBJ_B)
 	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
-#	@$(RANLIB) $(NAME)
 	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
-	@test -d $(OBJDIR) || mkdir $(OBJDIR)
-#	@mkdir -p $(OBJDIR)
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $@ created  $(B&W)"
 
 $(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h
-	@test -d $(OBJDIR) || mkdir $(OBJDIR)
-#	@mkdir -p $(OBJDIR)
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
 
-so: $(OBJ) $(OBJ_B)
-	@test -d $(OBJDIR) || mkdir $(OBJDIR)
-	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
-	@echo "$(GREEN)  Library libft.so created  $(B&W)"
-
 clean:
-	@/bin/rm -rf *.o
+	@/bin/rm -rf $(OBJDIR)*.o
 	@echo "$(RED)  Object files deleted  $(B&W)"
 
 fclean: clean
