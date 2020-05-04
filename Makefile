@@ -115,26 +115,20 @@ bonus: $(OBJ) $(OBJ_B)
 #	@$(RANLIB) $(NAME)
 	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
 
-dir:
-	@test -d $(OBJDIR) || mkdir $(OBJDIR)
-#	@mkdir -p $(OBJDIR)
-
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 #	@mkdir -p $(OBJDIR)
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $@ created  $(B&W)"
 
-$(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h $(HEADER)libft_bonus.h
+$(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 #	@mkdir -p $(OBJDIR)
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
 
-test:
-	$(CC) $(FLAGS) -I$(HEADER) *.c -o test
-
-so: dir $(OBJ) $(OBJ_B)
+so: $(OBJ) $(OBJ_B)
+	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 	@echo "$(GREEN)  Library libft.so created  $(B&W)"
 

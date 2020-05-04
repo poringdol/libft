@@ -6,20 +6,18 @@
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 12:38:27 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 12:38:29 by pdemocri         ###   ########.fr       */
+/*   Updated: 2020/05/02 17:49:57 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **alst, t_list *new)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (alst != NULL && *alst != NULL && new != NULL)
+	if (lst && new)
 	{
-		new->next = *alst;
-		*alst = new;
+		new->next = *lst;
+		*lst = new;
 	}
-	else if (alst != NULL && *alst == NULL && new != NULL)
-		*alst = new;
 }

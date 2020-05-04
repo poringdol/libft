@@ -12,7 +12,7 @@
 
 #include <string.h>
 #include "libft.h"
-#include "libft_bonus.h"
+#include "libft.h"
 
 char	*ft_strcasestr(const char *str1, const char *str2)
 {
