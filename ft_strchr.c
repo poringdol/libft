@@ -23,10 +23,7 @@ char	*ft_strchr(const char *str, int ch)
 	while (i <= ft_strlen(ptr))
 	{
 		if (ptr[i] == (char)ch)
-		{
-			ptr = &ptr[i];
-			return (ptr);
-		}
+			return (&ptr[i]);
 		i++;
 	}
 	return (NULL);

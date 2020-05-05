@@ -15,7 +15,6 @@
 void	*ft_memchr(const void *arr, int ch, size_t n)
 {
 	size_t	i;
-	char	*ptr;
 	char	*buf;
 
 	i = 0;
@@ -23,10 +22,7 @@ void	*ft_memchr(const void *arr, int ch, size_t n)
 	while (i < n)
 	{
 		if (buf[i] == (char)ch)
-		{
-			ptr = &buf[i];
-			return (ptr);
-		}
+			return (&buf[i]);
 		i++;
 	}
 	return (NULL);

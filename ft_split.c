@@ -79,9 +79,7 @@ static void	ft_strsplit(char const *s, char **str, char c)
 			i++;
 		while (s[i] && s[i] != c)
 		{
-			str[j][k] = s[i];
-			k++;
-			i++;
+			str[j][k++] = s[i++];
 			marker++;
 		}
 		if (marker > 0)
