@@ -6,7 +6,7 @@
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 11:52:13 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/05/02 12:08:14 by pdemocri         ###   ########.fr       */
+/*   Updated: 2020/05/06 01:18:00 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (s == NULL)
 		return (NULL);
-	if(!(str = ft_calloc(len + 1, sizeof(char))))
+	if (!(str = ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
 	i = 0;
 	while (s[i] && i <= start)
