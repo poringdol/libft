@@ -6,7 +6,7 @@
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 11:49:37 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 12:21:35 by pdemocri         ###   ########.fr       */
+/*   Updated: 2020/05/05 19:23:35 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ char		**ft_split(char const *s, char c)
 	while (i < words)
 	{
 		str[i] = ft_calloc((len + 1), sizeof(char));
+		if (str == NULL)
+			return (NULL);
 		i++;
 	}
 	ft_strsplit(s, str, c);
