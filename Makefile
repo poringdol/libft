@@ -125,8 +125,8 @@ clean:
 	@/bin/rm -rf $(OBJDIR)*.o
 	@echo "$(RED)  Object files deleted  $(B&W)"
 
-#so:
-#	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
+so:
+	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 
 fclean: clean
 	@/bin/rm -f $(NAME)
