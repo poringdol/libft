@@ -18,16 +18,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int	i;
 	char			*str;
 
-	str = ft_calloc(len + 1, sizeof(char));
-	if (s == NULL || str == NULL)
+	if (s == NULL)
+		return (NULL);
+	if(!(str = ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
 	i = 0;
 	while (s[i] && i <= start)
 		i++;
 	if (start > i)
-		return (NULL);
+		return (str);
 	i = 0;
-	while (len > 0)
+	while (len > 0 && s[i])
 	{
 		str[i++] = s[start++];
 		len--;

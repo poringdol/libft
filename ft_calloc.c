@@ -16,15 +16,11 @@
 
 void	*ft_calloc(size_t n, size_t size)
 {
-	char	*buf;
-	size_t	buf_size;
+	void	*buf;
 
-	if (FT_SIZE_MAX / size < n)
-		return (NULL);
-	buf_size = size * n;
-	buf = (void *)malloc(buf_size);
+	buf = (void *)malloc(size * n);
 	if (buf == NULL)
 		return (NULL);
-	ft_bzero(buf, buf_size);
-	return ((void *)buf);
+	ft_bzero(buf, size * n);
+	return (buf);
 }

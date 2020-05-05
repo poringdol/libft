@@ -105,8 +105,8 @@ char		**ft_split(char const *s, char c)
 	i = 0;
 	while (i < words)
 	{
-		str[i] = ft_calloc((len + 1), sizeof(char));
-		if (str == NULL)
+		str[i] = (char *)ft_calloc((len + 1), sizeof(char));
+		if (str[i] == NULL)
 			return (NULL);
 		i++;
 	}
