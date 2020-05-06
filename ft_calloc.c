@@ -6,7 +6,7 @@
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 11:46:23 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/05/04 17:44:17 by pdemocri         ###   ########.fr       */
+/*   Updated: 2020/05/06 14:56:56 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_calloc(size_t n, size_t size)
 {
 	void	*buf;
 
+	if ((n && FT_SIZE_MAX / n < size) || (size && FT_SIZE_MAX / size < n))
+		return (NULL);
 	buf = (void *)malloc(size * n);
 	if (buf == NULL)
 		return (NULL);
