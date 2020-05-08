@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 12:27:52 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 12:27:56 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 12:41:09 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/04/25 12:41:11 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include "libft_bonus.h"
+#include "libft.h"
 
-char	*ft_strmap(char const *s, char (*f)(char))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t	i;
-	char	*str;
-
-	if (s == NULL)
-		return (NULL);
-	i = 0;
-	while (s[i])
-		i++;
-	str = ft_strnew(i);
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (s[i])
+	while (lst != NULL && f != NULL)
 	{
-		str[i] = f(s[i]);
-		i++;
+		f((void *)lst->content);
+		lst = lst->next;
 	}
-	return (str);
 }

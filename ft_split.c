@@ -6,7 +6,7 @@
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 11:49:37 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 12:21:35 by pdemocri         ###   ########.fr       */
+/*   Updated: 2020/05/06 13:42:00 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,23 @@ static void	ft_strsplit(char const *s, char **str, char c)
 			i++;
 		while (s[i] && s[i] != c)
 		{
-			str[j][k] = s[i];
-			k++;
-			i++;
+			str[j][k++] = s[i++];
 			marker++;
 		}
 		if (marker > 0)
 			j++;
 	}
+}
+
+static char	**memfree(char **str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
+	return (NULL);
 }
 
 char		**ft_split(char const *s, char c)
@@ -96,18 +105,17 @@ char		**ft_split(char const *s, char c)
 	int		i;
 	char	**str;
 
-	if (!s || !c)
+	if (!s)
 		return (NULL);
 	words = ft_count_words(s, c);
-	str = (char **)malloc((words + 1) * sizeof(char *));
-	if (str == NULL)
+	if (!(str = (char **)ft_calloc((words + 1), sizeof(char *))))
 		return (NULL);
-	str[words] = NULL;
 	len = ft_word_len(s, c);
 	i = 0;
 	while (i < words)
 	{
-		str[i] = ft_calloc((len + 1), sizeof(char));
+		if (!(str[i] = (char *)ft_calloc((len + 1), sizeof(char))))
+			return (memfree(str));
 		i++;
 	}
 	ft_strsplit(s, str, c);

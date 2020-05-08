@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 12:38:18 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 12:39:36 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 11:50:04 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/04/25 12:05:59 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include <stdlib.h>
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **alst, t_list *new)
+char	*ft_strdup(const char *str)
 {
-	t_list *tmp;
+	int		i;
+	char	*copy;
 
-	if (alst != NULL && *alst != NULL)
+	i = ft_strlen(str);
+	copy = (char *)malloc((i + 1) * sizeof(char));
+	if (copy == NULL)
+		return (NULL);
+	i = 0;
+	while (str[i])
 	{
-		tmp = *alst;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = new;
+		copy[i] = str[i];
+		i++;
 	}
-	else
-		*alst = new;
+	copy[i] = '\0';
+	return (copy);
 }

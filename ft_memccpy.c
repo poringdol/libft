@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 11:51:42 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 12:07:53 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 11:47:55 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/04/25 11:47:57 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include "libft.h"
 
-char	*ft_strrchr(const char *str, int ch)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int		i;
-	char	*ptr;
+	size_t				i;
+	unsigned char		c_t;
+	unsigned char		*dst_t;
+	unsigned const char	*src_t;
 
-	i = ft_strlen(str);
-	ptr = (char *)str;
-	while (i >= 0)
+	i = 0;
+	c_t = (unsigned char)c;
+	dst_t = (unsigned char *)dst;
+	src_t = (unsigned const char *)src;
+	while (i < n)
 	{
-		if (ptr[i] == (char)ch)
+		if (src_t[i] == c_t)
 		{
-			ptr = &ptr[i];
-			return (ptr);
+			dst_t[i] = src_t[i];
+			i++;
+			return (&dst_t[i]);
 		}
-		i--;
+		dst_t[i] = src_t[i];
+		i++;
 	}
 	return (NULL);
 }

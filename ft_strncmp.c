@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 11:46:23 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 11:46:30 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 11:51:29 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/04/25 11:51:30 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdlib.h>
-#include "libft.h"
 
-void	*ft_calloc(size_t n, size_t size)
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	char	*buf;
-	size_t	buf_size;
+	size_t			i;
+	unsigned char	*s1;
+	unsigned char	*s2;
 
-	if (FT_SIZE_MAX / size < n)
-		return (NULL);
-	buf_size = size * n;
-	buf = (void *)malloc(buf_size);
-	if (buf == NULL)
-		return (NULL);
-	buf[buf_size - 1] = '\0';
-	while (buf_size > 0)
+	s1 = (unsigned char *)str1;
+	s2 = (unsigned char *)str2;
+	i = 0;
+	while (s1[i] && s2[i] && i < n)
 	{
-		buf_size--;
-		buf[buf_size] = '\0';
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
 	}
-	return ((void *)buf);
+	if (i < n && (s1[i] || s2[i]))
+		return (s1[i] - s2[i]);
+	return (0);
 }

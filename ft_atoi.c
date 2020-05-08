@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 11:51:35 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 12:08:25 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 11:15:22 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/05/04 12:52:05 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "libft.h"
-
-char	*ft_strnstr(const char *str1, const char *str2, size_t n)
+int	ft_atoi(const char *str)
 {
 	unsigned int	i;
-	char			*ptr;
+	long			nb;
+	long			nb_prev;
+	int				sign;
 
-	ptr = (char *)str1;
-	if (!ft_strlen(str2))
-		return (ptr);
 	i = 0;
-	while (str1[i] && (i + ft_strlen(str2)) <= n)
-	{
-		if (*str2 == ptr[i])
-		{
-			if (!ft_strncmp(&ptr[i], str2, ft_strlen(str2)))
-			{
-				ptr = &ptr[i];
-				return (ptr);
-			}
-		}
+	nb = 0;
+	sign = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
+	if (str[i] == '-')
+		sign = -sign;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb_prev = nb;
+		nb = nb * 10 + str[i] - '0';
+		i++;
+		if (nb_prev > nb)
+			return (sign == 1 ? -1 : 0);
 	}
-	return (NULL);
+	nb *= sign;
+	return ((int)nb);
 }

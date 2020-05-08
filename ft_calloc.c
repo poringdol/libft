@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcasestr.c                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 12:27:08 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 12:28:10 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 11:46:23 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/05/06 14:56:56 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include <stdlib.h>
 #include "libft.h"
-#include "libft_bonus.h"
 
-char	*ft_strcasestr(const char *str1, const char *str2)
+void	*ft_calloc(size_t n, size_t size)
 {
-	int		i;
-	int		len;
-	char	*ptr;
+	void	*buf;
 
-	ptr = (char *)str1;
-	len = ft_strlen(str2);
-	if (!len)
-		return (ptr);
-	i = 0;
-	while (str1[i])
-	{
-		if (ft_tolower(*str2) == ft_tolower(ptr[i]))
-		{
-			if (!ft_strncasecmp(&ptr[i], str2, len))
-			{
-				ptr = &ptr[i];
-				return (ptr);
-			}
-		}
-		i++;
-	}
-	return (NULL);
+	if ((n && FT_SIZE_MAX / n < size) || (size && FT_SIZE_MAX / size < n))
+		return (NULL);
+	buf = (void *)malloc(size * n);
+	if (buf == NULL)
+		return (NULL);
+	ft_bzero(buf, size * n);
+	return (buf);
 }

@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 11:47:55 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 11:47:57 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 12:38:18 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/05/02 18:37:54 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	unsigned int		i;
-	unsigned char		c_t;
-	unsigned char		*dst_t;
-	unsigned const char	*src_t;
+	t_list *tmp;
 
-	i = 0;
-	c_t = (unsigned char)c;
-	dst_t = (unsigned char *)dst;
-	src_t = (unsigned const char *)src;
-	while (i < n)
+	if (lst != NULL && *lst != NULL)
 	{
-		if (src_t[i] == c_t)
-		{
-			dst_t[i] = src_t[i];
-			i++;
-			return (&dst_t[i]);
-		}
-		dst_t[i] = src_t[i];
-		i++;
+		tmp = *lst;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
-	return (NULL);
+	else if (lst != NULL)
+		*lst = new;
 }

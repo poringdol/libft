@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 11:48:33 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 11:48:34 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 12:25:11 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/05/06 13:42:49 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strnew(size_t size)
 {
-	unsigned int		i;
-	unsigned char		*dst_t;
-	const unsigned char	*src_t;
+	char	*str;
 
-	i = 0;
-	dst_t = (unsigned char *)dst;
-	src_t = (const unsigned char *)src;
-	while (i < n && dst != src)
-	{
-		dst_t[i] = src_t[i];
-		i++;
-	}
-	return (dst);
+	if (size == FT_SIZE_MAX)
+		return (NULL);
+	str = (char *)ft_calloc(size + 1, sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	return (str);
 }

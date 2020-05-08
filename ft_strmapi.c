@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 12:31:20 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 12:31:36 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 11:51:16 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/04/25 12:07:39 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft_bonus.h"
+#include <string.h>
+#include "libft.h"
 
-void	ft_putnbr(int n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int i;
-	unsigned int tmp;
+	unsigned int	i;
+	char			*str;
 
-	tmp = n;
-	if (n < 0)
+	if (s == NULL)
+		return (NULL);
+	i = ft_strlen(s);
+	str = ft_calloc(i + 1, sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i] && f)
 	{
-		tmp = n * -1;
-		write(1, "-", 1);
+		str[i] = f(i, s[i]);
+		i++;
 	}
-	i = 1;
-	if (tmp >= 1000000000)
-	{
-		i = 1000000000;
-		n = 1;
-	}
-	while (i <= tmp && n != 1)
-		i = i * 10;
-	if (n != 1 && tmp != 0)
-		i = i / 10;
-	while (i > 0)
-	{
-		ft_putchar(tmp / i + '0');
-		tmp = tmp % i;
-		i = i / 10;
-	}
+	return (str);
 }

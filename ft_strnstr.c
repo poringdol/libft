@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 11:48:03 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 11:48:04 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 11:51:35 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/04/25 12:08:25 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *arr, int ch, size_t n)
+char	*ft_strnstr(const char *str1, const char *str2, size_t n)
 {
 	size_t	i;
+	size_t	len2;
 	char	*ptr;
-	char	*buf;
 
+	len2 = ft_strlen(str2);
+	ptr = (char *)str1;
+	if (!len2)
+		return (ptr);
 	i = 0;
-	buf = (char *)arr;
-	while (i < n)
+	while (str1[i] && (i + len2) <= n)
 	{
-		if (buf[i] == (char)ch)
+		if (*str2 == ptr[i])
 		{
-			ptr = &buf[i];
-			return (ptr);
+			if (!ft_strncmp(&ptr[i], str2, len2))
+				return (&ptr[i]);
 		}
 		i++;
 	}

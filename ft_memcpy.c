@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 12:25:11 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 12:25:16 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 11:48:33 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/04/25 11:48:34 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdlib.h>
-#include "libft.h"
 
-char	*ft_strnew(size_t size)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	*str;
-	size_t	max_size;
+	size_t				i;
+	unsigned char		*dst_t;
+	const unsigned char	*src_t;
 
-	max_size = (size < FT_SIZE_MAX) ? size + 1 : FT_SIZE_MAX;
-	str = (char *)malloc((max_size) * sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	str[max_size - 1] = '\0';
-	while (max_size > 0)
+	i = 0;
+	dst_t = (unsigned char *)dst;
+	src_t = (const unsigned char *)src;
+	while (i < n && dst != src)
 	{
-		max_size--;
-		str[max_size] = '\0';
+		dst_t[i] = src_t[i];
+		i++;
 	}
-	return (str);
+	return (dst);
 }

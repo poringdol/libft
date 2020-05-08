@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/25 11:15:22 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/04/25 11:15:44 by pdemocri         ###   ########.fr       */
+/*   Created: 2020/04/25 11:50:21 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/05/04 17:46:00 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+#include <string.h>
+#include "libft.h"
+
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
-	unsigned int	i;
-	long			nb;
-	long			nb_prev;
-	int				sign;
+	size_t i;
+	size_t length;
 
 	i = 0;
-	nb = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	while (dst[i] && i < n)
 		i++;
-	if (str[i] == '-')
-		sign = -sign;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	length = ft_strlen(src) + i;
+	if (i < n)
 	{
-		nb_prev = nb;
-		nb = nb * 10 + str[i] - '0';
-		i++;
-		if (nb_prev > nb)
-			return (sign == 1 ? -1 : 0);
+		while (i < n - 1 && *src)
+			dst[i++] = *src++;
+		dst[i] = '\0';
 	}
-	nb *= sign;
-	return ((int)nb);
+	return (length);
 }

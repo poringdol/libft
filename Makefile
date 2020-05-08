@@ -39,10 +39,10 @@ SRCS = ft_memset.c\
 	ft_putstr_fd.c\
 	ft_putendl_fd.c\
 	ft_putnbr_fd.c
-SRCDIR = ./sources/
+SRCDIR = ./
 
 OBJS = $(SRCS:.c=.o)
-OBJDIR = ./objects/
+OBJDIR = ./
 OBJ = $(addprefix $(OBJDIR), $(OBJS))
 
 SRCS_B = ft_lstnew.c\
@@ -85,7 +85,7 @@ SRCS_B = ft_lstnew.c\
 	ft_strcasestr_bonus.c\
 	ft_strupcase_bonus.c\
 	ft_strlowcase_bonus.c
-SRC_BDIR = ./sources_bonus/
+SRC_BDIR = ./
 
 OBJS_B = $(SRCS_B:.c=.o)
 OBJ_BDIR = $(OBJDIR)
@@ -99,38 +99,29 @@ FLAGS = -Wall -Werror -Wextra -ggdb3
 ARCHIVE = ar rs
 RANLIB = ranlib
 
-HEADER = ./includes/
+HEADER = ./
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(ARCHIVE) $(NAME) $(OBJ)
 	@echo "$(GREEN)  MAIN object files archived  $(B&W)"
-#	@$(RANLIB) $(NAME)
 	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
 
 bonus: $(OBJ) $(OBJ_B)
 	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
-#	@$(RANLIB) $(NAME)
 	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
 
-dir:
-	@test -d $(OBJDIR) || mkdir $(OBJDIR)
-#	@mkdir -p $(OBJDIR)
-
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
-	@test -d $(OBJDIR) || mkdir $(OBJDIR)
-#	@mkdir -p $(OBJDIR)
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $@ created  $(B&W)"
 
-$(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h $(HEADER)libft_bonus.h
-	@test -d $(OBJDIR) || mkdir $(OBJDIR)
-#	@mkdir -p $(OBJDIR)
+$(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
 
+<<<<<<< HEAD
 so: dir $(OBJ) $(OBJ_B)
 	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 	@echo "$(GREEN)  Library libft.so created  $(B&W)"
@@ -138,9 +129,14 @@ so: dir $(OBJ) $(OBJ_B)
 test:
 	$(CC) $(FLAGS) -I$(HEADER) ./sources/*.c ./sources_bonus/*.c *.c -o test
 
+=======
+>>>>>>> defence
 clean:
-	@/bin/rm -rf $(OBJDIR)
+	@/bin/rm -rf $(OBJDIR)*.o
 	@echo "$(RED)  Object files deleted  $(B&W)"
+
+#so:
+#	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 
 fclean: clean
 	@/bin/rm -f $(NAME)
@@ -148,4 +144,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re test so
+.PHONY: all bonus clean fclean re
