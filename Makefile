@@ -103,21 +103,35 @@ HEADER = ./
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@$(ARCHIVE) $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(OBJ_B)
+	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  MAIN object files archived  $(B&W)"
 	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
 
+<<<<<<< HEAD
 bonus: $(OBJ) $(OBJ_B)
 	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
 	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
+=======
+#bonus: $(OBJ) $(OBJ_B)
+#	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
+#	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
+#	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
+
+dir:
+	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+
+$(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
+	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+>>>>>>> makefile
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $@ created  $(B&W)"
 
 $(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h
+<<<<<<< HEAD
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
 
@@ -125,14 +139,26 @@ $(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h
 so: dir $(OBJ) $(OBJ_B)
 	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 	@echo "$(GREEN)  Library libft.so created  $(B&W)"
+=======
+	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
+	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
 
-test:
-	$(CC) $(FLAGS) -I$(HEADER) ./sources/*.c ./sources_bonus/*.c *.c -o test
+#so: dir $(OBJ) $(OBJ_B)
+#	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
+>>>>>>> makefile
+
+#test:
+#	$(CC) $(FLAGS) -I$(HEADER) ./sources/*.c ./sources_bonus/*.c *.c -o test
 
 =======
 >>>>>>> defence
 clean:
+<<<<<<< HEAD
 	@/bin/rm -rf $(OBJDIR)*.o
+=======
+	@/bin/rm -rf $(OBJDIR) libft.so
+>>>>>>> makefile
 	@echo "$(RED)  Object files deleted  $(B&W)"
 
 #so:
@@ -140,7 +166,7 @@ clean:
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@echo "$(RED)  Library $(NAME) deleted  $(B&W)"
+	@echo "$(RED)  Library: $(NAME) deleted  $(B&W)"
 
 re: fclean all
 
