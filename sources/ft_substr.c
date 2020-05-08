@@ -6,11 +6,7 @@
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/25 11:52:13 by pdemocri          #+#    #+#             */
-<<<<<<< HEAD:sources/ft_substr.c
-/*   Updated: 2020/05/02 12:08:14 by pdemocri         ###   ########.fr       */
-=======
 /*   Updated: 2020/05/06 18:12:51 by pdemocri         ###   ########.fr       */
->>>>>>> defence:ft_substr.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +22,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (s == NULL || str == NULL)
 		return (NULL);
 	i = 0;
-<<<<<<< HEAD:sources/ft_substr.c
-	while (s[i] && i <= start + len)
-		i++;
-	if (start > i)
-		return (NULL);
-=======
 	while (s[i] && i <= start)
 		i++;
 	if (start > i)
@@ -40,7 +30,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 			return (NULL);
 		return (str);
 	}
->>>>>>> defence:ft_substr.c
 	i = 0;
 	if (!(str = ft_calloc(len + 1, sizeof(char))))
 		return (NULL);

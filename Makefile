@@ -39,10 +39,10 @@ SRCS = ft_memset.c\
 	ft_putstr_fd.c\
 	ft_putendl_fd.c\
 	ft_putnbr_fd.c
-SRCDIR = ./
+SRCDIR = ./sources/
 
 OBJS = $(SRCS:.c=.o)
-OBJDIR = ./
+OBJDIR = ./objects/
 OBJ = $(addprefix $(OBJDIR), $(OBJS))
 
 SRCS_B = ft_lstnew.c\
@@ -85,7 +85,7 @@ SRCS_B = ft_lstnew.c\
 	ft_strcasestr_bonus.c\
 	ft_strupcase_bonus.c\
 	ft_strlowcase_bonus.c
-SRC_BDIR = ./
+SRC_BDIR = ./sources_bonus/
 
 OBJS_B = $(SRCS_B:.c=.o)
 OBJ_BDIR = $(OBJDIR)
@@ -99,7 +99,7 @@ FLAGS = -Wall -Werror -Wextra -ggdb3
 ARCHIVE = ar rs
 RANLIB = ranlib
 
-HEADER = ./
+HEADER = ./includes/
 
 all: $(NAME)
 
@@ -108,61 +108,33 @@ $(NAME): $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  MAIN object files archived  $(B&W)"
 	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
 
-<<<<<<< HEAD
 bonus: $(OBJ) $(OBJ_B)
 	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
 	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
-
-$(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
-=======
-#bonus: $(OBJ) $(OBJ_B)
-#	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
-#	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
-#	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
 
 dir:
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
->>>>>>> makefile
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $@ created  $(B&W)"
 
 $(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h
-<<<<<<< HEAD
-	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
-	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
-
-<<<<<<< HEAD
-so: dir $(OBJ) $(OBJ_B)
-	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
-	@echo "$(GREEN)  Library libft.so created  $(B&W)"
-=======
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
 
 #so: dir $(OBJ) $(OBJ_B)
 #	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
->>>>>>> makefile
 
 #test:
 #	$(CC) $(FLAGS) -I$(HEADER) ./sources/*.c ./sources_bonus/*.c *.c -o test
 
-=======
->>>>>>> defence
 clean:
-<<<<<<< HEAD
-	@/bin/rm -rf $(OBJDIR)*.o
-=======
 	@/bin/rm -rf $(OBJDIR) libft.so
->>>>>>> makefile
 	@echo "$(RED)  Object files deleted  $(B&W)"
-
-#so:
-#	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 
 fclean: clean
 	@/bin/rm -f $(NAME)
