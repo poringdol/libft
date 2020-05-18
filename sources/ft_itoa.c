@@ -13,48 +13,30 @@
 #include <string.h>
 #include "libft.h"
 
-static int	count_len(int n)
-{
-	int len;
-
-	if (n == 0)
-		return (1);
-	len = 0;
-	if (n < 0)
-		len++;
-	while (n != 0)
-	{
-		len++;
-		n /= 10;
-	}
-	return (len);
-}
-
 char		*ft_itoa(int n)
 {
-	int				i;
-	int				len;
+	unsigned int	len;
+	unsigned int	tmp;
+	int				sign;
 	char			*str;
-	unsigned int	n_tmp;
 
-	i = n;
-	len = count_len(n);
+	if (!n)
+		return (ft_strdup("0"));
+	sign = n > 0 ? 1 : -1;
+	tmp = n * sign;
+	len = n < 0 ? 2 : 1;
+	while ((n /= 10))
+		len++;
 	if (!(str = ft_calloc(len + 1, sizeof(char))))
 		return (NULL);
-	if (n < 0)
-	{
+	if (sign < 0)
 		str[0] = '-';
-		n_tmp = -n;
-	}
-	else
-		n_tmp = n;
-	i = len - 1;
-	if (n == 0)
-		str[0] = '0';
-	while (n_tmp != 0)
+	len--;
+	while (tmp)
 	{
-		str[i--] = n_tmp % 10 + '0';
-		n_tmp /= 10;
+
+		str[len--] = tmp % 10 + '0';
+		tmp /= 10;
 	}
 	return (str);
 }
