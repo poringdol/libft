@@ -12,8 +12,9 @@
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+void	ft_putchar(int c)
 {
-	if (!(write(1, &c, 1)))
+	unsigned char uc = c;
+	if (!(write(1, &uc, 1)))
 		return ;
 }
