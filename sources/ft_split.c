@@ -89,11 +89,8 @@ static void	ft_strsplit(char const *s, char **str, char c)
 
 static char	**memfree(char **str)
 {
-	int		i;
-
-	i = 0;
-	while (str[i])
-		free(str[i++]);
+	while (*str)
+		free(*str);
 	free(str);
 	return (NULL);
 }
@@ -113,11 +110,8 @@ char		**ft_split(char const *s, char c)
 	len = ft_word_len(s, c);
 	i = 0;
 	while (i < words)
-	{
-		if (!(str[i] = (char *)ft_calloc((len + 1), sizeof(char))))
+		if (!(str[i++] = (char *)ft_calloc((len + 1), sizeof(char))))
 			return (memfree(str));
-		i++;
-	}
 	ft_strsplit(s, str, c);
 	return (str);
 }

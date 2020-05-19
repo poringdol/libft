@@ -5,6 +5,13 @@ RED =  \033[0;31m
 GREEN = \033[0;32m
 PURPLE = \033[0;35m
 
+CC = gcc
+FLAGS = -Wall -Werror -Wextra -ggdb3
+
+RM = rm -rf
+ARCHIVE = ar rs
+RANLIB = ranlib
+
 SRCS = ft_memset.c\
 	ft_bzero.c\
 	ft_memcpy.c\
@@ -92,13 +99,6 @@ OBJ_BDIR = $(OBJDIR)
 OBJ_B = $(addprefix $(OBJ_BDIR), $(OBJS_B))
 
 NAME = libft.a
-
-CC = gcc
-FLAGS = -Wall -Werror -Wextra -ggdb3
-
-ARCHIVE = ar rs
-RANLIB = ranlib
-
 HEADER = ./includes/
 
 all: $(NAME)
@@ -108,13 +108,10 @@ $(NAME): $(OBJ) $(OBJ_B)
 	@echo "$(GREEN)  MAIN object files archived  $(B&W)"
 	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
 
-bonus: $(OBJ) $(OBJ_B)
-	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
-	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
-	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
-
-dir:
-	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+#bonus: $(OBJ) $(OBJ_B)
+#	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
+#	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
+#	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
 
 $(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
@@ -126,18 +123,19 @@ $(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h
 	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
 
-#so: dir $(OBJ) $(OBJ_B)
-#	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
+so: $(OBJ) $(OBJ_B)
+	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 
 #test:
 #	$(CC) $(FLAGS) -I$(HEADER) ./sources/*.c ./sources_bonus/*.c *.c -o test
 
 clean:
-	@/bin/rm -rf $(OBJDIR) libft.so
+	@$(RM) $(OBJDIR) libft.so
 	@echo "$(RED)  Object files deleted  $(B&W)"
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	@$(RM) $(NAME)
 	@echo "$(RED)  Library: $(NAME) deleted  $(B&W)"
 
 re: fclean all

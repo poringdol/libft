@@ -15,15 +15,12 @@
 
 void	ft_putendl_fd(char const *s, int fd)
 {
-	int i;
-
-	if (s == NULL)
+	if (!s)
 		return ;
-	i = 0;
-	while (s[i])
+	while (*s)
 	{
-		if (write(fd, &s[i], 1))
-			i++;
+		if (write(fd, s, 1))
+			s++;
 	}
 	if (!(write(fd, "\n", 1)))
 		return ;
