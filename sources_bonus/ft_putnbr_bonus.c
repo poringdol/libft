@@ -38,6 +38,5 @@ int	ft_putnbr(int n)
 		i /= 10;
 		len++;
 	}
-	ft_putchar('\n');
 	return (len);
 }
