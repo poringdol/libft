@@ -28,8 +28,10 @@ void	ft_putnbr_fd(int n, int fd)
 		write(fd, "-", 1);
 	tmp = n > 0 ? n : -n;
 	i = 1;
-	while (i * 10 < tmp)
+	while (i <= tmp)
 		i *= 10;
+	if (tmp != 0)
+		i /= 10;
 	while (i > 0)
 	{
 		ft_putchar_fd(tmp / i + '0', fd);
