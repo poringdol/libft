@@ -103,7 +103,7 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 int					ft_putchar(char c);
 int					ft_putstr(char const *s);
 void				ft_putendl(char const *s);
-int					ft_putnbr(int n);
+int					ft_putnbr(long long n);
 int					ft_islower(int ch);
 int					ft_isupper(int ch);
 int					ft_isblank(int ch);
