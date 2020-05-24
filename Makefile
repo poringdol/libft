@@ -61,19 +61,20 @@ SRCS_B = ft_lstnew.c\
 	ft_lstclear.c\
 	ft_lstiter.c\
 	ft_lstmap.c\
-	ft_putstr_bonus.c\
 	ft_strnew_bonus.c\
 	ft_memdel_bonus.c\
 	ft_striter_bonus.c\
 	ft_strequ_bonus.c\
 	ft_strclr_bonus.c\
 	ft_putchar_bonus.c\
+	ft_putstr_bonus.c\
 	ft_putendl_bonus.c\
+	ft_putnbr_bonus.c\
+	ft_putunbr_bonus.c\
 	ft_strnequ_bonus.c\
 	ft_striteri_bonus.c\
 	ft_strdel_bonus.c\
 	ft_strmap_bonus.c\
-	ft_putnbr_bonus.c\
 	ft_strcpy_bonus.c\
 	ft_strncpy_bonus.c\
 	ft_strcat_bonus.c\

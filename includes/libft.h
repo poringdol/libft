@@ -104,6 +104,7 @@ int					ft_putchar(char c);
 int					ft_putstr(char const *s);
 void				ft_putendl(char const *s);
 int					ft_putnbr(long long n);
+int					ft_putunbr(unsigned long long n);
 int					ft_islower(int ch);
 int					ft_isupper(int ch);
 int					ft_isblank(int ch);
