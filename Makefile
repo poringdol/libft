@@ -9,7 +9,7 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra -ggdb3
 
 RM = rm -rf
-ARCHIVE = ar rs
+AR = ar rs
 RANLIB = ranlib
 
 SRCS = ft_memset.c\
@@ -105,24 +105,23 @@ HEADER = ./includes/
 all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJ_B)
-	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
-	@echo "$(GREEN)  MAIN object files archived  $(B&W)"
-	@echo "$(GREEN)  Library $(NAME) created  $(B&W)"
+	@$(AR) $(NAME) $(OBJ) $(OBJ_B)
+	@echo "$(PURPLE)  Library $(NAME) created  $(B&W)"
 
 #bonus: $(OBJ) $(OBJ_B)
-#	@$(ARCHIVE) $(NAME) $(OBJ) $(OBJ_B)
-#	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files archived  $(B&W)"
+#	@$(AR) $(NAME) $(OBJ) $(OBJ_B)
+#	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files ARd  $(B&W)"
 #	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
 
-$(OBJDIR)%.o: $(SRCDIR)%.c $(HEADER)libft.h
+$(OBJDIR)%.o: $(SRCDIR)%.c
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
-	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
+	@$(CC) -I$(HEADER) -MMD -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $@ created  $(B&W)"
 
 $(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
-	@$(CC) -I$(HEADER) -c $< -o $@ $(FLAGS)
-	@echo "$(GREEN)  Object file $(PURPLE)$@$(B&W) $(GREEN)created  $(B&W)"
+	@$(CC) -I$(HEADER) -MMD -c $< -o $@ $(FLAGS)
+	@echo "$(GREEN)  Object file $@created  $(B&W)"
 
 so: $(OBJ) $(OBJ_B)
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
