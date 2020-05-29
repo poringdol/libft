@@ -52,6 +52,8 @@ OBJS = $(SRCS:.c=.o)
 OBJDIR = ./objects/
 OBJ = $(addprefix $(OBJDIR), $(OBJS))
 
+DEP = $(OBJ:.o=.d)
+
 SRCS_B = ft_lstnew.c\
 	ft_lstadd_front.c\
 	ft_lstsize.c\
@@ -92,12 +94,15 @@ SRCS_B = ft_lstnew.c\
 	ft_strncasecmp_bonus.c\
 	ft_strcasestr_bonus.c\
 	ft_strupcase_bonus.c\
-	ft_strlowcase_bonus.c
+	ft_strlowcase_bonus.c\
+	ft_pow_bonus.c
 SRC_BDIR = ./sources_bonus/
 
 OBJS_B = $(SRCS_B:.c=.o)
 OBJ_BDIR = $(OBJDIR)
 OBJ_B = $(addprefix $(OBJ_BDIR), $(OBJS_B))
+
+DEP_B = $(OBJ_B:.o=.d)
 
 NAME = libft.a
 HEADER = ./includes/
@@ -108,24 +113,21 @@ $(NAME): $(OBJ) $(OBJ_B)
 	@$(AR) $(NAME) $(OBJ) $(OBJ_B)
 	@echo "$(PURPLE)  Library $(NAME) created  $(B&W)"
 
-#bonus: $(OBJ) $(OBJ_B)
-#	@$(AR) $(NAME) $(OBJ) $(OBJ_B)
-#	@echo "$(GREEN)  Main and $(PURPLE)bonus$(B&W) $(GREEN)object files ARd  $(B&W)"
-#	@echo "$(GREEN)  Library $(NAME) with $(PURPLE)BONUS$(B&W) $(GREEN)funtions created  $(B&W)"
+-include $(DEP) $(DEP_B)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 	@$(CC) -I$(HEADER) -MMD -c $< -o $@ $(FLAGS)
-	@echo "$(GREEN)  Object file $@ created  $(B&W)"
+	@echo "$(GREEN)  Object file$(PURPLE) $@ $(GREEN)created  $(B&W)"
 
-$(OBJDIR)%.o: $(SRC_BDIR)%.c $(HEADER)libft.h
+$(OBJDIR)%.o: $(SRC_BDIR)%.c
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 	@$(CC) -I$(HEADER) -MMD -c $< -o $@ $(FLAGS)
-	@echo "$(GREEN)  Object file $@created  $(B&W)"
+	@echo "$(GREEN)  Object file$(PURPLE) $@ $(GREEN)created  $(B&W)"
 
-so: $(OBJ) $(OBJ_B)
-	@test -d $(OBJDIR) || mkdir $(OBJDIR)
-	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
+#so: $(OBJ) $(OBJ_B)
+#	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+#	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 
 #test:
 #	$(CC) $(FLAGS) -I$(HEADER) ./sources/*.c ./sources_bonus/*.c *.c -o test
@@ -136,7 +138,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(RED)  Library: $(NAME) deleted  $(B&W)"
+	@echo "$(RED)  Library $(NAME) deleted  $(B&W)"
 
 re: fclean all
 
