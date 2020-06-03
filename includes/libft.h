@@ -6,7 +6,7 @@
 /*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 17:33:19 by pdemocri          #+#    #+#             */
-/*   Updated: 2020/05/04 17:45:47 by pdemocri         ###   ########.fr       */
+/*   Updated: 2020/06/03 01:06:16 by pdemocri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,11 @@ int					ft_strncasecmp(const char *str1, const char *str2,\
 char				*ft_strcasestr(const char *str1, const char *str2);
 char				*ft_strupcase(char *str);
 char				*ft_strlowcase(char *str);
+<<<<<<< HEAD
 double 				ft_pow(double basis, double exponent);
 char				*ft_lltoa(long long n);
+=======
+double				ft_pow(double basis, double exponent);
+>>>>>>> 5b62015706d3006ba955a27dd8bd6d2c9b8b0047
 
 #endif
