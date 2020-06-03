@@ -45,7 +45,8 @@ SRCS = ft_memset.c\
 	ft_putchar_fd.c\
 	ft_putstr_fd.c\
 	ft_putendl_fd.c\
-	ft_putnbr_fd.c
+	ft_putnbr_fd.c\
+	ft_lltoa_bonus.c
 SRCDIR = ./sources/
 
 OBJS = $(SRCS:.c=.o)
@@ -120,20 +121,12 @@ $(NAME): $(OBJ) $(OBJ_B)
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 	@$(CC) -I$(HEADER) -MMD -c $< -o $@ $(FLAGS)
-<<<<<<< HEAD
-	@echo "$(GREEN)  Object file$(PURPLE) $@ $(GREEN)created  $(B&W)"
-=======
 	@echo "$(GREEN)  Object file $(PURPLE)$@ $(GREEN)created  $(B&W)"
->>>>>>> e23b8d450dd1a340931eb59b896f1273ac1cdd20
 
 $(OBJDIR)%.o: $(SRC_BDIR)%.c
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 	@$(CC) -I$(HEADER) -MMD -c $< -o $@ $(FLAGS)
-<<<<<<< HEAD
-	@echo "$(GREEN)  Object file$(PURPLE) $@ $(GREEN)created  $(B&W)"
-=======
 	@echo "$(GREEN)  Object file $(PURPLE)$@ $(GREEN)created  $(B&W)"
->>>>>>> e23b8d450dd1a340931eb59b896f1273ac1cdd20
 
 #so: $(OBJ) $(OBJ_B)
 #	@test -d $(OBJDIR) || mkdir $(OBJDIR)
