@@ -12,7 +12,7 @@ char		*ft_lltoa(long long n)
 	if (!n)
 		return (ft_strdup("0"));
     if (n == LLONG_MIN)
-        return (ft_strdup("−9223372036854775808"));
+		return (ft_strdup("−9223372036854775808"));
 	sign = n > 0 ? 1 : -1;
 	tmp = n * sign;
 	len = n < 0 ? 2 : 1;
