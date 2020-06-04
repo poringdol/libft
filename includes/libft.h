@@ -118,11 +118,7 @@ int					ft_strncasecmp(const char *str1, const char *str2,\
 char				*ft_strcasestr(const char *str1, const char *str2);
 char				*ft_strupcase(char *str);
 char				*ft_strlowcase(char *str);
-<<<<<<< HEAD
 double 				ft_pow(double basis, double exponent);
 char				*ft_lltoa(long long n);
-=======
-double				ft_pow(double basis, double exponent);
->>>>>>> 5b62015706d3006ba955a27dd8bd6d2c9b8b0047
 
 #endif

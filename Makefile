@@ -119,11 +119,7 @@ $(NAME): $(OBJ) $(OBJ_B)
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 	@$(CC) -I$(HEADER) -MMD -c $< -o $@ $(FLAGS)
-<<<<<<< HEAD
 	@echo "$(GREEN)  Object file $(PURPLE)$@ $(GREEN)created  $(B&W)"
-=======
-	@echo "$(GREEN)  Object file$(PURPLE) $@ $(GREEN)created  $(B&W)"
->>>>>>> 5b62015706d3006ba955a27dd8bd6d2c9b8b0047
 
 $(OBJDIR)%.o: $(SRC_BDIR)%.c
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
