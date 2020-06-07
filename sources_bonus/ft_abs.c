@@ -10,7 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+int			ft_abs(int i)
+{
+	return (i >= 0 ? i : -i);
+}
+
 long long	ft_llabs(long long ll)
 {
 	return (ll >= 0 ? ll : -ll);
+}
+
+double		ft_fabs(double d)
+{
+	return (d >= 0 ? d : -d);
 }

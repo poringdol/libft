@@ -120,6 +120,8 @@ char				*ft_strupcase(char *str);
 char				*ft_strlowcase(char *str);
 double				ft_pow(double basis, double exponent);
 char				*ft_lltoa(long long n);
+int					ft_abs(int i);
 long long			ft_llabs(long long ll);
+double				ft_fabs(double d);
 
 #endif
