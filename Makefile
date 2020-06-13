@@ -97,7 +97,9 @@ SRCS_B = ft_lstnew.c\
 	ft_strlowcase.c\
 	ft_lltoa.c\
 	ft_pow.c\
-	ft_abs.c
+	ft_abs.c\
+	get_next_line.c\
+	get_next_line_utils.c
 SRC_BDIR = ./sources_bonus/
 
 OBJS_B = $(SRCS_B:.c=.o)
@@ -131,8 +133,8 @@ $(OBJDIR)%.o: $(SRC_BDIR)%.c
 #	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 #	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
 
-#test:
-#	$(CC) $(FLAGS) -I$(HEADER) ./sources/*.c ./sources_bonus/*.c *.c -o test
+test: $(NAME)
+	$(CC) main.c -L. -lft -I$(HEADER) -o test $(FLAGS)
 
 clean:
 	@$(RM) $(OBJDIR) libft.so
@@ -144,4 +146,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re test

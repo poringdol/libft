@@ -32,7 +32,7 @@ t_list_gnl	*ft_lstnew_gnl(t_list_gnl **list, int fd)
 	return (*list);
 }
 
-int		ft_delnode(t_list_gnl **list, int fd)
+int			ft_delnode(t_list_gnl **list, int fd)
 {
 	t_list_gnl *prev;
 	t_list_gnl *curr;

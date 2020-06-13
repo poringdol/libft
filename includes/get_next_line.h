@@ -15,11 +15,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct		s_list_gnl
+# define BUFFER_SIZE 100
+
+typedef struct		s_gnl
 {
 	int				fd;
 	char			*tail;
-	struct s_list	*next;
+	struct s_gnl	*next;
 }					t_list_gnl;
 
 int					get_next_line(int fd, char **line);

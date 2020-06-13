@@ -12,6 +12,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include "libft.h"
 #include "get_next_line.h"
 
 static int	freemem(char **s)
@@ -88,7 +89,8 @@ int			get_line(int fd, char **line, char **tail, t_list_gnl **list)
 		if ((res = check_buf(buf, tail, line)) != 2)
 			return (res != 1 ? ft_delnode(list, fd) : res);
 	}
-	return (ft_delnode(list, fd) + freemem(&buf));
+	return (res == 0 ? ft_delnode(list, fd) + freemem(&buf) + freemem(line) :\
+	ft_delnode(list, fd) + freemem(&buf) + 1);
 }
 
 int			get_next_line(int fd, char **line)
