@@ -99,7 +99,9 @@ SRCS_B = ft_lstnew.c\
 	ft_pow.c\
 	ft_abs.c\
 	get_next_line.c\
-	get_next_line_utils.c
+	get_next_line_utils.c\
+	ft_atof.c
+
 SRC_BDIR = ./sources_bonus/
 
 OBJS_B = $(SRCS_B:.c=.o)
