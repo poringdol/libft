@@ -14,18 +14,17 @@
 #include <limits.h>
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd(int n, int fd)
 {
 	long long	i;
+	int			res;
 	int			tmp;
 
 	if (n == INT_MIN)
-	{
-		write(fd, "-2147483648", 11);
-		return ;
-	}
+		return (write(fd, "-2147483648", 11));
+	res = 0;
 	if (n < 0)
-		write(fd, "-", 1);
+		res += write(fd, "-", 1);
 	tmp = n > 0 ? n : -n;
 	i = 1;
 	while (i <= tmp)
@@ -37,5 +36,7 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd(tmp / i + '0', fd);
 		tmp %= i;
 		i /= 10;
+		res++;
 	}
+	return (res);
 }
