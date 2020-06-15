@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pdemocri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/15 06:07:45 by pdemocri          #+#    #+#             */
+/*   Updated: 2020/06/15 06:08:03 by pdemocri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static double	get_float(char *str)
@@ -12,8 +24,9 @@ static double	get_float(char *str)
 	return (flt);
 }
 
-double				ft_atof(char *str)
+double			ft_atof(char *str)
 {
+	double	f;
 	double	nb;
 	double	sign;
 
@@ -32,9 +45,9 @@ double				ft_atof(char *str)
 	}
 	if (*str == '.')
 	{
-        double f = get_float(++str);
-        nb += f;
-    }
+		f = get_float(++str);
+		nb += f;
+	}
 	nb *= sign;
 	return ((float)nb);
 }
