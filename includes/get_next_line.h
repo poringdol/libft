@@ -27,5 +27,6 @@ typedef struct		s_gnl
 int					get_next_line(int fd, char **line);
 t_list_gnl			*ft_lstnew_gnl(t_list_gnl **list, int fd);
 int					ft_delnode(t_list_gnl **list, int fd);
+int					lstclear_gnl(t_list_gnl **lst, void (*del)(void *));
 
 #endif

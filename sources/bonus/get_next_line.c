@@ -100,7 +100,7 @@ int			get_next_line(int fd, char **line)
 
 	if (!line || fd < 0 || BUFFER_SIZE < 1 ||
 	!(*line = malloc((BUFFER_SIZE + 1) * sizeof(char))))
-		return (lstclear_gnl(&list, free) - 1);
+		return (-1);
 	*line[0] = 0;
 	if (!list)
 		if (!(list = ft_lstnew_gnl(&list, fd)))
@@ -111,7 +111,7 @@ int			get_next_line(int fd, char **line)
 	if (fd != tmp->fd)
 	{
 		if (!(list = ft_lstnew_gnl(&list, fd)))
-			return (lstclear_gnl(&list, free) - 1);
+			return (-1);
 		tmp = list;
 	}
 	return (get_line(fd, line, &(tmp->tail), &list));

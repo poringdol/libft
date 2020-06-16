@@ -51,20 +51,3 @@ int			ft_delnode(t_list_gnl **list, int fd)
 	free(curr);
 	return (0);
 }
-
-int			lstclear_gnl(t_list_gnl **lst, void (*del)(void *))
-{
-	t_list_gnl	*tmp;
-
-	if (lst != NULL && del != NULL)
-	{
-		while (*lst != NULL)
-		{
-			tmp = (*lst)->next;
-			free((*lst)->tail);
-			free(*lst);
-			*lst = tmp;
-		}
-	}
-	return (0);
-}
