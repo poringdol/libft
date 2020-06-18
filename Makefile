@@ -6,7 +6,7 @@ GREEN = \033[0;32m
 PURPLE = \033[0;35m
 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -ggdb
+FLAGS = -Wall -Werror -Wextra -ggdb -O3 -fPIC
 
 RM = rm -rf
 AR = ar rs
@@ -131,9 +131,11 @@ $(OBJDIR)%.o: $(SRC_BDIR)%.c
 	@$(CC) -I$(HEADER) -MMD -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $(PURPLE)$@ $(GREEN)created  $(B&W)"
 
-#so: $(OBJ) $(OBJ_B)
-#	@test -d $(OBJDIR) || mkdir $(OBJDIR)
-#	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
+so: $(OBJ) $(OBJ_B)
+	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+	@$(CC) -L ./ -I$(HEADER) $(OBJ) $(OBJ_B) -shared -o libft.so $(FLAGS)
+
+bonus: $(NAME)
 
 test: $(NAME)
 	$(CC) main.c -L. -lft -I$(HEADER) -o test $(FLAGS)
