@@ -47,11 +47,9 @@ SRCS = ft_memset.c\
 	ft_putendl_fd.c\
 	ft_putnbr_fd.c
 SRCDIR = ./sources/
-
 OBJS = $(SRCS:.c=.o)
 OBJDIR = ./objects/
 OBJ = $(addprefix $(OBJDIR), $(OBJS))
-
 DEP = $(OBJ:.o=.d)
 
 SRCS_B = ft_lstnew.c\
@@ -101,22 +99,42 @@ SRCS_B = ft_lstnew.c\
 	get_next_line.c\
 	get_next_line_utils.c\
 	ft_atof.c
-
 SRC_BDIR = ./sources_bonus/
-
 OBJS_B = $(SRCS_B:.c=.o)
-OBJ_BDIR = $(OBJDIR)
-OBJ_B = $(addprefix $(OBJ_BDIR), $(OBJS_B))
-
+OBJ_B = $(addprefix $(OBJDIR), $(OBJS_B))
 DEP_B = $(OBJ_B:.o=.d)
+
+SRCS_PRINTF = ft_printf.c\
+	  check_params.c\
+	  get_params.c\
+	  flags.c\
+	  print_c.c\
+	  print_s.c\
+	  print_i.c\
+	  print_u.c\
+	  print_p_x.c\
+	  print_o.c\
+	  print_f_e_g.c\
+	  print_utils_num.c\
+	  print_utils_double.c\
+  	  print_utils_e.c\
+	  print_utils_g.c\
+	  util_number.c\
+	  print_inf_nan.c\
+	  print_lc_ls.c\
+	  convert_wch_to_ch.c
+SRC_PRINTFDIR = ./sources_printf/
+OBJS_PRINTF = $(SRCS_PRINTF:.c=.o)
+OBJ_PRINTF = $(addprefix $(OBJDIR), $(OBJS_PRINTF))
+DEP_PRINTF = $(OBJ_PRINTF:.o=.d)
 
 NAME = libft.a
 HEADER = ./includes/
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJ_B)
-	@$(AR) $(NAME) $(OBJ) $(OBJ_B)
+$(NAME): $(OBJ) $(OBJ_B) $(OBJ_PRINTF)
+	@$(AR) $(NAME) $(OBJ) $(OBJ_B) $(OBJ_PRINTF)
 	@echo "$(PURPLE)  Library $(NAME) created  $(B&W)"
 
 -include $(DEP) $(DEP_B)
@@ -127,6 +145,11 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 	@echo "$(GREEN)  Object file $(PURPLE)$@ $(GREEN)created  $(B&W)"
 
 $(OBJDIR)%.o: $(SRC_BDIR)%.c
+	@test -d $(OBJDIR) || mkdir $(OBJDIR)
+	@$(CC) -I$(HEADER) -MMD -c $< -o $@ $(FLAGS)
+	@echo "$(GREEN)  Object file $(PURPLE)$@ $(GREEN)created  $(B&W)"
+
+$(OBJDIR)%.o: $(SRC_PRINTFDIR)%.c
 	@test -d $(OBJDIR) || mkdir $(OBJDIR)
 	@$(CC) -I$(HEADER) -MMD -c $< -o $@ $(FLAGS)
 	@echo "$(GREEN)  Object file $(PURPLE)$@ $(GREEN)created  $(B&W)"
