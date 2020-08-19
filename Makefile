@@ -6,7 +6,7 @@ GREEN = \033[0;32m
 PURPLE = \033[0;35m
 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -ggdb -O3 -fPIC
+FLAGS = -Wall -Werror -Wextra -ggdb -fPIC
 
 RM = rm -rf
 AR = ar rs
