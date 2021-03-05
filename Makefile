@@ -6,11 +6,10 @@ GREEN = \033[0;32m
 PURPLE = \033[0;35m
 
 CC = gcc
-FLAGS = -Wall -Werror -Wextra -ggdb -fPIC
+FLAGS = -Wall -Werror -Wextra -g
 
 RM = rm -rf
 AR = ar rs
-RANLIB = ranlib
 
 SRCS = ft_memset.c\
 	ft_bzero.c\
