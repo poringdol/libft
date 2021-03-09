@@ -58,6 +58,7 @@ static int	check_buf(char *buf, char **tail, char **line)
 		tmp[0] = '\0';
 		if (!(*line = ft_strjoin(*line, buf)))
 			return (freemem(&tmp_line) + freemem(&buf) - 1);
+		(void)tail;
 		if (!(*tail = ft_strjoin(++tmp, "")))
 			return (freemem(&tmp_line) + freemem(&buf) - 1);
 		return (freemem(&tmp_line) + freemem(&buf) + 1);
@@ -89,7 +90,7 @@ int			get_line(int fd, char **line, char **tail, t_list_gnl **list)
 		if ((res = check_buf(buf, tail, line)) != 2)
 			return (res != 1 ? ft_delnode(list, fd) : res);
 	}
-	return (res == 0 ? ft_delnode(list, fd) + freemem(&buf) + freemem(line) :\
+	return (res == 0 ? ft_delnode(list, fd) + freemem(&buf) + freemem(line) :
 	ft_delnode(list, fd) + freemem(&buf) + 1);
 }
 

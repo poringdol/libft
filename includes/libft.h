@@ -114,6 +114,7 @@ char				*ft_lltoa(long long n);
 int					ft_abs(int i);
 long long			ft_llabs(long long ll);
 double				ft_fabs(double d);
-double				ft_atof(char *str);
+double				ft_atof(const char *str);
+long long			ft_atoll(const char *str);
 
 #endif

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static double	get_float(char *str)
+static double	get_float(const char *str)
 {
 	int		i;
 	float	flt;
@@ -24,7 +24,7 @@ static double	get_float(char *str)
 	return (flt);
 }
 
-double			ft_atof(char *str)
+double			ft_atof(const char *str)
 {
 	double	f;
 	double	nb;

@@ -97,7 +97,8 @@ SRCS_B = ft_lstnew.c\
 	ft_abs.c\
 	get_next_line.c\
 	get_next_line_utils.c\
-	ft_atof.c
+	ft_atof.c \
+	ft_atoll.c
 SRC_BDIR = ./sources_bonus/
 OBJS_B = $(SRCS_B:.c=.o)
 OBJ_B = $(addprefix $(OBJDIR), $(OBJS_B))
